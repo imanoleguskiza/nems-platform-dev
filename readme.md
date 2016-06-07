@@ -8,7 +8,7 @@ You should not have built the project just yet at this point!
 
 #### 1.1 Require the ec-europa/nems-platform like so
 ```
-    "ec-europa/reps-platform": "1.*"
+    "ec-europa/nems-platform": "1.*"
 ```
 
 #### 1.2 Add the package like so`(don't forget the comma after the last package)
@@ -37,7 +37,7 @@ Modify
 To
 ```
     "scripts": {
-    "post-install-cmd": ["resources/scripts/composer/post-install.sh","vendor/ec-europa/reps-platform/post-install.sh"]
+    "post-install-cmd": ["resources/scripts/composer/post-install.sh","vendor/ec-europa/nems-platform/post-install.sh"]
     },
 ```
 
