@@ -67,8 +67,8 @@ function nems_gallery_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-gallery-field_gallery_image'.
-  $field_instances['node-gallery-field_gallery_image'] = array(
+  // Exported field_instance: 'node-gallery-field_nems_gallery_image'.
+  $field_instances['node-gallery-field_nems_gallery_image'] = array(
     'bundle' => 'gallery',
     'deleted' => 0,
     'description' => '',
@@ -109,7 +109,7 @@ function nems_gallery_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_gallery_image',
+    'field_name' => 'field_nems_gallery_image',
     'label' => 'Image',
     'required' => 0,
     'settings' => array(
@@ -213,7 +213,7 @@ function nems_gallery_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'eva_display' => array(
         'label' => 'above',
