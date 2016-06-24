@@ -49,7 +49,7 @@ function nems_call_for_externals_install() {
     'Open',
     'Closed',
   );
-  foreach ($items as $key => $item) {
+  foreach ($items as $item) {
     $newterm = new stdClass();
     $newterm->name = $item;
     $newterm->vid = $vid;
