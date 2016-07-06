@@ -42,7 +42,7 @@ projects[integration][subdir] = "contrib"
 projects[integration][version] = "1.x-dev"
 
 projects[media_feeds][subdir] = "contrib"
-projects[media_feeds][version] = "2.0-alpha1+12-dev"
+projects[media_feeds][version] = "2.x-dev"
 
 projects[menu_admin_per_menu][subdir] = "contrib"
 projects[menu_admin_per_menu][version] = "1.1"
@@ -79,15 +79,3 @@ projects[views_block_filter_block][version] = "1.0-beta2"
 
 projects[weight][subdir] = "contrib"
 projects[weight][version] = "3.1"
-
-
-
-; =========
-; Libraries
-; =========
-
-
-; ======
-; Themes
-; ======
-

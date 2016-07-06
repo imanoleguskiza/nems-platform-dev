@@ -14,7 +14,9 @@ cp -r vendor/ec-europa/nems-platform/modules/features/* lib/features/nems
 cp -r vendor/ec-europa/nems-platform/themes/* lib/themes/nems
 cp vendor/ec-europa/nems-platform/nems-platform.make resources/nems-platform.make
 
-echo NEMS Sources copied
-echo Make sure that you include nems-platform.make by adding:
+echo NEMS Sources copied...
+echo Make sure that you add:
+echo =================================
 echo includes[] = "nems-platform.make"
-echo to your site.make file
+echo =================================
+echo to your site.make file.
