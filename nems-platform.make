@@ -41,11 +41,17 @@ projects[insert_block][version] = "1.x-dev"
 projects[integration][subdir] = "contrib"
 projects[integration][version] = "1.x-dev"
 
+projects[media_browser_plus][subdir] = "contrib"
+projects[media_browser_plus][version] = "3.0-beta4"
+
 projects[media_feeds][subdir] = "contrib"
 projects[media_feeds][version] = "2.x-dev"
 
 projects[menu_admin_per_menu][subdir] = "contrib"
 projects[menu_admin_per_menu][version] = "1.1"
+
+projects[multiform][subdir] = "contrib"
+projects[multiform][version] = "1.1"
 
 projects[nodeblock][subdir] = "contrib"
 projects[nodeblock][version] = "1.7"
@@ -76,6 +82,9 @@ projects[tocify][version] = "1.0"
 
 projects[views_block_filter_block][subdir] = "contrib"
 projects[views_block_filter_block][version] = "1.0-beta2"
+
+projects[views_tree][subdir] = "contrib"
+projects[views_tree][version] = "2.0"
 
 projects[weight][subdir] = "contrib"
 projects[weight][version] = "3.1"
