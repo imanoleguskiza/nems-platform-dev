@@ -5,7 +5,6 @@ base theme = ec_resp
 multisite_version = 2.1
 package = europa_eu
 php = 5.6
-version = 7.x-1.0
 
 regions[header_top] = "Header Top"
 regions[header_right] = "Header Right"
