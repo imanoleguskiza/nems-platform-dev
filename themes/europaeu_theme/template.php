@@ -48,7 +48,6 @@ function europaeu_theme_preprocess_splash(&$vars) {
   $vars['languages_list'] = $languages_list;
 }
 
-
 /**
  * Implements hook_page_alter().
  */
