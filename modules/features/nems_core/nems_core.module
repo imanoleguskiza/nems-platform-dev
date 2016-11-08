@@ -310,6 +310,11 @@ function _nems_core_sync_folders_form_op($chunk, &$context) {
 
   foreach ($files as $file) {
     $uri = str_replace(array('public://', 'private://'), '', $file->uri);
+    // remove file name
+    $uri = rtrim($uri, '/');
+    $uri = explode('/', $uri);
+    array_pop($uri);
+    $uri = implode('/', $uri);
     // Get media_folders term id for that path.
     $tid = _nems_core_get_media_folder_tid($uri, $context);
     // Add the folder media tid.
@@ -336,8 +341,6 @@ function _nems_core_get_media_folder_tid($dir, &$context) {
   // Check if term or any parent exist
   // starting from current file folder (not parent).
   $reps = drupal_map_assoc(array_reverse(explode("/", $dir)));
-  // Remove file name.
-  array_shift($reps);
 
   // File is a direct child of media root.
   if (empty($reps)) {
@@ -356,7 +359,6 @@ function _nems_core_get_media_folder_tid($dir, &$context) {
       if ($pos == 0) {
         // It does not have parents.
         $tl = array_shift($tls);
-
         return $tl->tid;
       }
 
@@ -375,7 +377,6 @@ function _nems_core_get_media_folder_tid($dir, &$context) {
   }
   // On that point we do not have any known ancestor, create the whole tree.
   if (empty($tid)) {
-    $dir = implode('/', $reps);
     $root = taxonomy_get_term_by_name(NEMS_CORE_MBP_MEDIA_FOLDER_ROOT, NEMS_CORE_MBP_MEDIA_FOLDER_VOCABULARY);
     $tid = _nems_core_create_media_folder($dir, reset($root));
   }
@@ -452,6 +453,8 @@ function _nems_core_create_media_folder($tree, $parent) {
  */
 function _nems_core_sync_folders_form_finished($success, $results, $operations) {
   if ($success) {
+    // We need a flush to display the new tid values on the file forms.
+    cache_clear_all();
     drupal_set_message(t('Success.'));
   }
   else {
