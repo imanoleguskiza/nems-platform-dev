@@ -310,7 +310,7 @@ function _nems_core_sync_folders_form_op($chunk, &$context) {
 
   foreach ($files as $file) {
     $uri = str_replace(array('public://', 'private://'), '', $file->uri);
-    // remove file name
+    // Remove file name.
     $uri = rtrim($uri, '/');
     $uri = explode('/', $uri);
     array_pop($uri);
