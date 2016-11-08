@@ -1,7 +1,7 @@
 name = NEMS Slider
-description = Custom slider for Home Affairs
+description = Custom slider for NEMS
 core = 7.x
-package = Home Affairs
+package = NEMS
 php = 5.6
 multisite_version = 2.2
 dependencies[] = bean

@@ -130,7 +130,7 @@ function nems_slider_strongarm() {
         ),
       ),
       'display' => array(
-        'home_affairs_slider_entity_view_1' => array(
+        'nems_slider_entity_view_1' => array(
           'default' => array(
             'weight' => '0',
             'visible' => TRUE,

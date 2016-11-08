@@ -37,7 +37,7 @@ function nems_slider_image_default_styles() {
 
   // Exported image style: nems_slide.
   $styles['nems_slide'] = array(
-    'label' => 'Home Affairs Slide',
+    'label' => 'Slide style',
     'effects' => array(
       1 => array(
         'name' => 'image_scale',
