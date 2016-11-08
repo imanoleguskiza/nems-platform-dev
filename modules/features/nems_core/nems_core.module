@@ -6,8 +6,8 @@
 
 include_once 'nems_core.features.inc';
 
-define("MBP_MEDIA_FOLDER_ROOT", "Media Root");
-define("MBP_MEDIA_FOLDER_VOCABULARY", "media_folders");
+define("NEMS_CORE_MBP_MEDIA_FOLDER_ROOT", "Media Root");
+define("NEMS_CORE_MBP_MEDIA_FOLDER_VOCABULARY", "media_folders");
 define("NEMS_CORE_BLOCK_ACCESS_ROLE", 6);
 const NEMS_CORE_BLOCK_ACCESS_PERMISSIONS = array(
   'config',
@@ -44,6 +44,9 @@ function nems_core_permission() {
   );
 }
 
+/**
+ * Implements hook_menu().
+ */
 function nems_core_menu() {
   $items = array();
 
@@ -325,6 +328,7 @@ function _nems_core_sync_folders_form_op($chunk, &$context) {
  *   Directory path.
  * @param array $context
  *   Batch context.
+ *
  * @return int $tid
  *   The found term id.
  */
@@ -332,18 +336,18 @@ function _nems_core_get_media_folder_tid($dir, &$context) {
   // Check if term or any parent exist
   // starting from current file folder (not parent).
   $reps = drupal_map_assoc(array_reverse(explode("/", $dir)));
-  // remove file name
+  // Remove file name.
   array_shift($reps);
 
-  // File is a direct child of media root
+  // File is a direct child of media root.
   if (empty($reps)) {
-    $root = taxonomy_get_term_by_name(MBP_MEDIA_FOLDER_ROOT, MBP_MEDIA_FOLDER_VOCABULARY);
+    $root = taxonomy_get_term_by_name(NEMS_CORE_MBP_MEDIA_FOLDER_ROOT, NEMS_CORE_MBP_MEDIA_FOLDER_VOCABULARY);
 
     return $root->tid;
   }
 
   foreach ($reps as $rep) {
-    $tls = taxonomy_get_term_by_name($rep, MBP_MEDIA_FOLDER_VOCABULARY);
+    $tls = taxonomy_get_term_by_name($rep, NEMS_CORE_MBP_MEDIA_FOLDER_VOCABULARY);
     // If term is found, check that the parents are the same.
     if (count($tls)) {
       // Extract only the ancestors of current found item.
@@ -372,7 +376,7 @@ function _nems_core_get_media_folder_tid($dir, &$context) {
   // On that point we do not have any known ancestor, create the whole tree.
   if (empty($tid)) {
     $dir = implode('/', $reps);
-    $root = taxonomy_get_term_by_name(MBP_MEDIA_FOLDER_ROOT, MBP_MEDIA_FOLDER_VOCABULARY);
+    $root = taxonomy_get_term_by_name(NEMS_CORE_MBP_MEDIA_FOLDER_ROOT, NEMS_CORE_MBP_MEDIA_FOLDER_VOCABULARY);
     $tid = _nems_core_create_media_folder($dir, reset($root));
   }
 
@@ -386,6 +390,7 @@ function _nems_core_get_media_folder_tid($dir, &$context) {
  *   The term looked up for.
  * @param string $ancestors
  *   The path of parents.
+ *
  * @return bool
  *   Result.
  */
@@ -410,6 +415,7 @@ function _nems_core_get_media_folder_parents_path($kid, $ancestors) {
  *   The path "tree" to the file.
  * @param object $parent
  *   The term parent.
+ *
  * @return int
  *   The term id.
  */
@@ -417,7 +423,7 @@ function _nems_core_create_media_folder($tree, $parent) {
   // Create the 1st child on the parent
   // and other on their parent created on the fly.
   $current_parent = $parent->tid;
-  $vocab = taxonomy_vocabulary_machine_name_load(MBP_MEDIA_FOLDER_VOCABULARY);
+  $vocab = taxonomy_vocabulary_machine_name_load(NEMS_CORE_MBP_MEDIA_FOLDER_VOCABULARY);
   $to_create = explode('/', $tree);
   foreach ($to_create as $tc) {
     if (!empty($tc)) {
@@ -453,9 +459,9 @@ function _nems_core_sync_folders_form_finished($success, $results, $operations) 
     // $operations contains the operations that remained unprocessed.
     $error_operation = reset($operations);
     $message = t('An error occurred while processing @operation with arguments : @args', array(
-        '@operation' => $error_operation[0],
-        '@args' => print_r($error_operation[0], TRUE),
-      )
+      '@operation' => $error_operation[0],
+      '@args' => print_r($error_operation[0], TRUE),
+    )
     );
     drupal_set_message($message, 'error');
   }
