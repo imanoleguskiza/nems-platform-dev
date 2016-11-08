@@ -6,6 +6,8 @@
 
 include_once 'nems_core.features.inc';
 
+define("MBP_MEDIA_FOLDER_ROOT", "Media Root");
+define("MBP_MEDIA_FOLDER_VOCABULARY", "media_folders");
 define("NEMS_CORE_BLOCK_ACCESS_ROLE", 6);
 const NEMS_CORE_BLOCK_ACCESS_PERMISSIONS = array(
   'config',
@@ -40,6 +42,19 @@ function nems_core_permission() {
     ),
 
   );
+}
+
+function nems_core_menu() {
+  $items = array();
+
+  $items['admin/content/file/nems_core'] = array(
+    'title' => 'Sync folders',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nems_core_sync_folders_form'),
+    'access arguments' => array('administer_files'),
+    'type' => MENU_LOCAL_TASK,
+  );
+  return $items;
 }
 
 /**
@@ -231,4 +246,217 @@ function _nems_core_user_edit_access($account) {
     return FALSE;
   }
   return user_edit_access($account);
+}
+
+/**
+ * Callback for the admin page.
+ */
+function nems_core_sync_folders_form() {
+  $form['description'] = array(
+    '#type' => 'markup',
+    '#markup' => t('Parse files and folders to sync with MBP'),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Go',
+  );
+
+  return $form;
+}
+
+/**
+ * Submit handler for nems_core_sync_folders_form().
+ */
+function nems_core_sync_folders_form_submit($form, &$form_state) {
+  $operations = array();
+
+  // Fetch all unassigned files.
+  // EntityFieldQuery does not know NULL.
+  $query = db_select('file_managed', 'fm');
+  $query->leftJoin('field_data_field_folder', 'ff', 'fm.fid = ff.entity_id');
+  $query->fields('fm', array('fid'));
+  $query->fields('ff', array('field_folder_tid'));
+  $query->condition('field_folder_tid', NULL);
+  $result = $query->execute()->fetchAllAssoc('fid');
+  // Break them into chunks.
+  $fids = array_keys($result);
+  $chunks = array_chunk($fids, 10);
+
+  foreach ($chunks as $chunk) {
+    $operations[] = array('_nems_core_sync_folders_form_op', array(
+      $chunk,
+    ),
+    );
+  }
+
+  $batch = array('operations' => $operations, 'finished' => '_nems_core_sync_folders_form_finished');
+
+  batch_set($batch);
+}
+
+/**
+ * Process barches of files and create/assign terms.
+ *
+ * @param array $chunk
+ *   Chunks of file ids.
+ * @param array $context
+ *   Batch context.
+ */
+function _nems_core_sync_folders_form_op($chunk, &$context) {
+  $files = entity_load('file', array($chunk));
+
+  foreach ($files as $file) {
+    $uri = str_replace(array('public://', 'private://'), '', $file->uri);
+    // Get media_folders term id for that path.
+    $tid = _nems_core_get_media_folder_tid($uri, $context);
+    // Add the folder media tid.
+    if (!empty($tid)) {
+      $wrapper = entity_metadata_wrapper('file', $file);
+      $wrapper->field_folder->set($tid);
+      $wrapper->save();
+    }
+  }
+}
+
+/**
+ * Get media folder term id.
+ *
+ * @param string $dir
+ *   Directory path.
+ * @param array $context
+ *   Batch context.
+ * @return int $tid
+ *   The found term id.
+ */
+function _nems_core_get_media_folder_tid($dir, &$context) {
+  // Check if term or any parent exist
+  // starting from current file folder (not parent).
+  $reps = drupal_map_assoc(array_reverse(explode("/", $dir)));
+  // remove file name
+  array_shift($reps);
+
+  // File is a direct child of media root
+  if (empty($reps)) {
+    $root = taxonomy_get_term_by_name(MBP_MEDIA_FOLDER_ROOT, MBP_MEDIA_FOLDER_VOCABULARY);
+
+    return $root->tid;
+  }
+
+  foreach ($reps as $rep) {
+    $tls = taxonomy_get_term_by_name($rep, MBP_MEDIA_FOLDER_VOCABULARY);
+    // If term is found, check that the parents are the same.
+    if (count($tls)) {
+      // Extract only the ancestors of current found item.
+      $pos = array_search($rep, array_keys($reps));
+
+      if ($pos == 0) {
+        // It does not have parents.
+        $tl = array_shift($tls);
+
+        return $tl->tid;
+      }
+
+      $ancestors = implode("/", array_reverse(array_slice($reps, $pos)));
+      foreach ($tls as $tl) {
+        if (_nems_core_get_media_folder_parents_path($tl, $ancestors)) {
+          // An common ancestor has been found.
+          $to_create = str_replace($ancestors, '', $dir);
+          // If needed, create children based on that parent.
+          $tid = !empty($to_create) ? _nems_core_create_media_folder($to_create, $tl) : $tl->tid;
+          // Exit both loops.
+          break 2;
+        }
+      }
+    }
+  }
+  // On that point we do not have any known ancestor, create the whole tree.
+  if (empty($tid)) {
+    $dir = implode('/', $reps);
+    $root = taxonomy_get_term_by_name(MBP_MEDIA_FOLDER_ROOT, MBP_MEDIA_FOLDER_VOCABULARY);
+    $tid = _nems_core_create_media_folder($dir, reset($root));
+  }
+
+  return $tid;
+}
+
+/**
+ * Get ancestors of current term.
+ *
+ * @param object $kid
+ *   The term looked up for.
+ * @param string $ancestors
+ *   The path of parents.
+ * @return bool
+ *   Result.
+ */
+function _nems_core_get_media_folder_parents_path($kid, $ancestors) {
+  // Reverse the parents and remove the Media Root.
+  $parents = array_reverse(taxonomy_get_parents_all($kid->tid));
+  array_shift($parents);
+  $par = array();
+  foreach ($parents as $parent) {
+    $par[] = $parent->name;
+  }
+  if ($ancestors == implode("/", $par)) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * Create media folder term.
+ *
+ * @param string $tree
+ *   The path "tree" to the file.
+ * @param object $parent
+ *   The term parent.
+ * @return int
+ *   The term id.
+ */
+function _nems_core_create_media_folder($tree, $parent) {
+  // Create the 1st child on the parent
+  // and other on their parent created on the fly.
+  $current_parent = $parent->tid;
+  $vocab = taxonomy_vocabulary_machine_name_load(MBP_MEDIA_FOLDER_VOCABULARY);
+  $to_create = explode('/', $tree);
+  foreach ($to_create as $tc) {
+    if (!empty($tc)) {
+      $term = (object) array(
+        'name' => $tc,
+        'vid' => $vocab->vid,
+        'parent' => array($current_parent),
+      );
+      taxonomy_term_save($term);
+      $current_parent = $term->tid;
+    }
+  }
+  // Return the tid of the folder of the file.
+  return $term->tid;
+}
+
+/**
+ * Show status message of batch.
+ *
+ * @param bool $success
+ *   The batch status.
+ * @param array $results
+ *   Processed operations results.
+ * @param array $operations
+ *   The operations passed to batch.
+ */
+function _nems_core_sync_folders_form_finished($success, $results, $operations) {
+  if ($success) {
+    drupal_set_message(t('Success.'));
+  }
+  else {
+    // An error occurred.
+    // $operations contains the operations that remained unprocessed.
+    $error_operation = reset($operations);
+    $message = t('An error occurred while processing @operation with arguments : @args', array(
+        '@operation' => $error_operation[0],
+        '@args' => print_r($error_operation[0], TRUE),
+      )
+    );
+    drupal_set_message($message, 'error');
+  }
 }
