@@ -52,7 +52,7 @@ function drush_nems_multilingual_setup_export_po_translations($module = FALSE) {
   $directory = drupal_get_path('module', $module) . '/translations/';
   $translations_file = 'translations.json';
   if (file_exists($directory . $translations_file)) {
-    $json_content = json_decode(file_get_contents($directory . $translations_file));
+    $json_content = drupal_json_decode(file_get_contents($directory . $translations_file));
     foreach ($json_content as $type => $items) {
       foreach (language_list() as $key_lang => $language) {
         if ($key_lang == 'en') {
@@ -91,7 +91,7 @@ function drush_nems_multilingual_setup_import_po_translations($module = FALSE) {
   $directory = drupal_get_path('module', $module) . '/translations/';
   $translations_file = 'translations.json';
   if (file_exists($directory . $translations_file)) {
-    $json_content = json_decode(file_get_contents($directory . $translations_file));
+    $json_content = drupal_json_decode(file_get_contents($directory . $translations_file));
     foreach ($json_content as $type => $items) {
       foreach (language_list() as $key_lang => $language) {
         $language_file = $directory . $type . '_' . $key_lang . '.po';
