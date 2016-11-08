@@ -279,6 +279,7 @@ function nems_core_sync_folders_form_submit($form, &$form_state) {
   $query->leftJoin('field_data_field_folder', 'ff', 'fm.fid = ff.entity_id');
   $query->fields('fm', array('fid'));
   $query->fields('ff', array('field_folder_tid'));
+  $query->condition('status', FILE_STATUS_PERMANENT, '=');
   $query->condition('field_folder_tid', NULL);
   $result = $query->execute()->fetchAllAssoc('fid');
   // Break them into chunks.
@@ -318,10 +319,9 @@ function _nems_core_sync_folders_form_op($chunk, &$context) {
     // Get media_folders term id for that path.
     $tid = _nems_core_get_media_folder_tid($uri, $context);
     // Add the folder media tid.
-    if (!empty($tid)) {
-      $wrapper = entity_metadata_wrapper('file', $file);
-      $wrapper->field_folder->set($tid);
-      $wrapper->save();
+    if (!empty($tid) && isset($file->field_folder)) {
+      $file->field_folder[LANGUAGE_NONE][0]['tid'] = $tid;
+      field_attach_update('file', $file);
     }
   }
 }
@@ -433,7 +433,7 @@ function _nems_core_create_media_folder($tree, $parent) {
         'vid' => $vocab->vid,
         'parent' => array($current_parent),
       );
-      taxonomy_term_save($term);
+      nems_core_term_save($term);
       $current_parent = $term->tid;
     }
   }
@@ -454,7 +454,7 @@ function _nems_core_create_media_folder($tree, $parent) {
 function _nems_core_sync_folders_form_finished($success, $results, $operations) {
   if ($success) {
     // We need a flush to display the new tid values on the file forms.
-    cache_clear_all();
+    drupal_flush_all_caches();
     drupal_set_message(t('Success.'));
   }
   else {
@@ -462,10 +462,87 @@ function _nems_core_sync_folders_form_finished($success, $results, $operations) 
     // $operations contains the operations that remained unprocessed.
     $error_operation = reset($operations);
     $message = t('An error occurred while processing @operation with arguments : @args', array(
-      '@operation' => $error_operation[0],
-      '@args' => print_r($error_operation[0], TRUE),
-    )
+        '@operation' => $error_operation[0],
+        '@args' => print_r($error_operation[0], TRUE),
+      )
     );
     drupal_set_message($message, 'error');
   }
+}
+
+/**
+ * Create a term without taxonomy_term_presave (MPB ruins our batch script).
+ *
+ * @param $term
+ *
+ * @return mixed
+ */
+function nems_core_term_save($term) {
+  // Prevent leading and trailing spaces in term names.
+  $term->name = trim($term->name);
+  if (!isset($term->vocabulary_machine_name)) {
+    $vocabulary = taxonomy_vocabulary_load($term->vid);
+    $term->vocabulary_machine_name = $vocabulary->machine_name;
+  }
+
+  // Load the stored entity, if any.
+  if (!empty($term->tid) && !isset($term->original)) {
+    $term->original = entity_load_unchanged('taxonomy_term', $term->tid);
+  }
+
+  field_attach_presave('taxonomy_term', $term);
+  module_invoke_all('entity_presave', $term, 'taxonomy_term');
+
+  if (empty($term->tid)) {
+    $op = 'insert';
+    $status = drupal_write_record('taxonomy_term_data', $term);
+    field_attach_insert('taxonomy_term', $term);
+    if (!isset($term->parent)) {
+      $term->parent = array(0);
+    }
+  }
+  else {
+    $op = 'update';
+    $status = drupal_write_record('taxonomy_term_data', $term, 'tid');
+    field_attach_update('taxonomy_term', $term);
+    if (isset($term->parent)) {
+      db_delete('taxonomy_term_hierarchy')
+        ->condition('tid', $term->tid)
+        ->execute();
+    }
+  }
+
+  if (isset($term->parent)) {
+    if (!is_array($term->parent)) {
+      $term->parent = array($term->parent);
+    }
+    $query = db_insert('taxonomy_term_hierarchy')
+      ->fields(array('tid', 'parent'));
+    foreach ($term->parent as $parent) {
+      if (is_array($parent)) {
+        foreach ($parent as $tid) {
+          $query->values(array(
+            'tid' => $term->tid,
+            'parent' => $tid
+          ));
+        }
+      }
+      else {
+        $query->values(array(
+          'tid' => $term->tid,
+          'parent' => $parent
+        ));
+      }
+    }
+    $query->execute();
+  }
+
+  // Reset the taxonomy term static variables.
+  taxonomy_terms_static_reset();
+
+  // Invoke the taxonomy hooks.
+  module_invoke_all("entity_$op", $term, 'taxonomy_term');
+  unset($term->original);
+
+  return $status;
 }
