@@ -215,7 +215,7 @@ function nems_core_block_view_alter(&$data, $block) {
 function nems_core_form_tb_megamenu_admin_settings_alter(&$form, &$form_state, $form_id) {
   $perm_menus = _menu_admin_per_menu_get_perm_menus();
   foreach ($form as $name => $item) {
-    if (substr($name, 0, strlen('#')) !== '#') {
+    if (drupal_substr($name, 0, drupal_strlen('#')) !== '#') {
 
       if (!isset($perm_menus[$name])) {
         unset($form[$name]);
@@ -223,7 +223,6 @@ function nems_core_form_tb_megamenu_admin_settings_alter(&$form, &$form_state, $
     }
   }
 }
-
 
 /**
  * Custom access function to restrict the access to bartik and seven.
@@ -271,9 +270,14 @@ function _nems_core_user_edit_access($account) {
   return user_edit_access($account);
 }
 
-
 /**
  * Access callback for tb-megamenu.
+ *
+ * @param string $menu
+ *   Menu name.
+ *
+ * @return bool
+ *   Access level to a tb_megamenu.
  */
 function _nems_core_tb_megamenu_access($menu) {
   if (user_access('administer menu')) {
@@ -285,6 +289,14 @@ function _nems_core_tb_megamenu_access($menu) {
 
 /**
  * Custom function to check multiple permissions.
+ *
+ * @param array $permissions
+ *   Array containing a set of permission names.
+ * @param object $account
+ *   Account to check access level. Uses current user if not defined.
+ *
+ * @return bool
+ *   Access level for the specified permissions.
  */
 function _nems_core_user_access($permissions, $account = NULL) {
   $access = TRUE;
@@ -317,7 +329,7 @@ function _nems_core_user_access($permissions, $account = NULL) {
   }
   foreach ($permissions as $string) {
     if (!isset($perm[$account->uid][$string])) {
-    $access = FALSE;
+      $access = FALSE;
     }
   }
   return $access;

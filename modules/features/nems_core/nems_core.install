@@ -132,9 +132,9 @@ function nems_core_enable() {
   drupal_set_message(t('NEMS core feature is now active on your site.'));
 
   // Move media browser plus field_folder to hidden.
-  $bundels = array('audio', 'document', 'image', 'video');
+  $bundles = array('audio', 'document', 'image', 'video');
 
-  foreach ($bundels as $bundle) {
+  foreach ($bundles as $bundle) {
     $instance_info = field_info_instance('file', 'field_folder', $bundle);
 
     if (!empty($instance_info)) {
@@ -152,13 +152,13 @@ function nems_core_disable() {
 }
 
 /**
- * Implements hook_update_N().
+ * Remove the media_browser_plus taxonomy reference from file displays.
  */
 function nems_core_update_7201() {
   // Move media browser plus field_folder to hidden.
-  $bundels = array('audio', 'document', 'image', 'video');
+  $bundles = array('audio', 'document', 'image', 'video');
 
-  foreach ($bundels as $bundle) {
+  foreach ($bundles as $bundle) {
     $instance_info = field_info_instance('file', 'field_folder', $bundle);
 
     if (!empty($instance_info)) {
