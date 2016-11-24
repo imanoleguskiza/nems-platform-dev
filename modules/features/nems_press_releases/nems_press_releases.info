@@ -2,6 +2,7 @@ name = NEMS Press Releases
 description = NEMS Press Releases
 core = 7.x
 package = NEMS
+php = 5.6
 dependencies[] = cce_basic_config
 dependencies[] = ctools
 dependencies[] = features
