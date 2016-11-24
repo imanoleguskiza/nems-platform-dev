@@ -171,7 +171,7 @@ function _nems_core_menu_block_access($account = NULL) {
 function nems_core_node_access($node, $op, $account) {
   $type = is_string($node) ? $node : $node->type;
 
-  if (in_array('webmaster', $account->roles) && ($type== 'page' || $type == 'article')) {
+  if (in_array('webmaster', $account->roles) && ($type == 'page' || $type == 'article')) {
     return NODE_ACCESS_DENY;
   }
 
