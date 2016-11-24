@@ -48,7 +48,7 @@ function nems_call_for_tenders_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Upload files',
-    'weight' => '4',
+    'weight' => '5',
     'children' => array(
       0 => 'field_nems_file',
     ),
@@ -75,7 +75,7 @@ function nems_call_for_tenders_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Tags',
-    'weight' => '5',
+    'weight' => '4',
     'children' => array(
       0 => 'field_tags',
     ),

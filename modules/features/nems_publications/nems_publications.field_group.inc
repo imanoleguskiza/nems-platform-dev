@@ -21,7 +21,7 @@ function nems_publications_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Editorial team',
-    'weight' => '7',
+    'weight' => '8',
     'children' => array(
       0 => 'og_group_ref',
     ),
@@ -48,7 +48,7 @@ function nems_publications_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'External Link',
-    'weight' => '4',
+    'weight' => '6',
     'children' => array(
       0 => 'field_nems_core_external_url',
     ),
@@ -75,7 +75,7 @@ function nems_publications_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Upload files',
-    'weight' => '5',
+    'weight' => '7',
     'children' => array(
       0 => 'field_nems_publication_file',
     ),
@@ -102,7 +102,7 @@ function nems_publications_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Content',
-    'weight' => '2',
+    'weight' => '3',
     'children' => array(
       0 => 'body',
       1 => 'field_nems_core_date',
@@ -132,7 +132,7 @@ function nems_publications_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Publications Category',
-    'weight' => '3',
+    'weight' => '5',
     'children' => array(
       0 => 'field_nems_publications_category',
     ),
@@ -159,7 +159,7 @@ function nems_publications_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Tags',
-    'weight' => '6',
+    'weight' => '4',
     'children' => array(
       0 => 'field_tags',
     ),

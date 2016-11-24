@@ -18,6 +18,7 @@ function nems_publications_taxonomy_default_vocabularies() {
       'weight' => -3,
       'language' => 'und',
       'i18n_mode' => 0,
+      'entity_type' => 'taxonomy_vocabulary',
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',

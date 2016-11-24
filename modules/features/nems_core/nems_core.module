@@ -129,6 +129,30 @@ function nems_core_menu_alter(&$items) {
 }
 
 /**
+ * Implements hook_module_implements_alter().
+ */
+function nems_core_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter') {
+    $group = $implementations['nems_core'];
+    unset($implementations['nems_core']);
+    $implementations['nems_core'] = $group;
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function nems_core_form_alter(&$form, &$form_state, $form_id) {
+  if (isset($form['type']) && isset($form['type']['#value']) && $form_id == $form['type']['#value'] . '_node_form') {
+    if (isset($form['language'])) {
+      // Ensure correct language list (no disabled languages should be present).
+      $languages = i18n_node_language_list($form['#node']);
+      $form['language']['#options'] = $languages;
+    }
+  }
+}
+
+/**
  * Determine whether the user has permission to use menu_block module.
  *
  * @param object $account
@@ -139,6 +163,20 @@ function nems_core_menu_alter(&$items) {
  */
 function _nems_core_menu_block_access($account = NULL) {
   return user_access('administer blocks', $account);
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function nems_core_node_access($node, $op, $account) {
+  $type = is_string($node) ? $node : $node->type;
+
+  if (in_array('webmaster', $account->roles) && ($type== 'page' || $type == 'article')) {
+    return NODE_ACCESS_DENY;
+  }
+
+  // Returning nothing from this function would have the same effect.
+  return NODE_ACCESS_IGNORE;
 }
 
 /**

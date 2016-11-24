@@ -75,7 +75,7 @@ function nems_gallery_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Gallery',
-    'weight' => '5',
+    'weight' => '6',
     'children' => array(
       0 => 'field_nems_gallery_image',
     ),
@@ -102,7 +102,7 @@ function nems_gallery_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Picture Gallery Category',
-    'weight' => '4',
+    'weight' => '5',
     'children' => array(
       0 => 'field_nems_gallery_category',
     ),
@@ -129,7 +129,7 @@ function nems_gallery_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Tags',
-    'weight' => '6',
+    'weight' => '4',
     'children' => array(
       0 => 'field_tags',
     ),

@@ -99,16 +99,16 @@ function nems_vacancy_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '9',
+          'weight' => '8',
         ),
         'path' => array(
-          'weight' => '3',
+          'weight' => '6',
         ),
         'rabbit_hole' => array(
-          'weight' => '1',
+          'weight' => '2',
         ),
         'language' => array(
-          'weight' => '2',
+          'weight' => '1',
         ),
       ),
       'display' => array(),
@@ -127,7 +127,9 @@ function nems_vacancy_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'i18n_node_options_nems_vacancy';
-  $strongarm->value = array();
+  $strongarm->value = array(
+    0 => 'required',
+  );
   $export['i18n_node_options_nems_vacancy'] = $strongarm;
 
   $strongarm = new stdClass();
