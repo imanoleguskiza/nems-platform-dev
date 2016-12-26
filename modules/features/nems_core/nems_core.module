@@ -333,3 +333,15 @@ function _nems_core_user_access($permissions, $account = NULL) {
   }
   return $access;
 }
+
+/**
+ * Implements hook_node_access().
+ */
+function nems_core_node_access($node, $op, $account) {
+  global $user;
+  $type = is_string($node) ? $node : $node->type;
+
+  if (in_array($type, array('page', 'article')) && in_array('webmaster', $user->roles)) {
+    return NODE_ACCESS_DENY;
+  }
+}
