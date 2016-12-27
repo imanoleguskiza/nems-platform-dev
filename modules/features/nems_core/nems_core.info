@@ -128,4 +128,6 @@ features_exclude[dependencies][file_entity] = file_entity
 features_exclude[dependencies][media_wysiwyg] = media_wysiwyg
 features_exclude[dependencies][token_filter] = token_filter
 features_exclude[user_role][webmaster] = webmaster
+registry_autoload[] = PSR-4
+registry_autoload_files[] = Drupal/nems_core/FileUrlTokenHandler.php
 multisite_version = 2.1

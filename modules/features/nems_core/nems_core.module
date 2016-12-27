@@ -26,6 +26,28 @@ const NEMS_CORE_BLOCK_ACCESS_PERMISSIONS = array(
 );
 
 /**
+ * Implements hook_nexteuropa_token_token_handlers().
+ */
+function nems_core_nexteuropa_token_token_handlers() {
+  return array(
+    'handler_name' => '\Drupal\nems_core\FileUrlTokenHandler',
+  );
+}
+
+/**
+ * Implements hook_ckeditor_plugin().
+ */
+function nems_core_ckeditor_ckeditor_plugin() {
+  return array(
+    'nems_core_ckeditor' => array(
+      'name' => 'nems_core_ckeditor',
+      'desc' => t('NEMS file Token'),
+      'path' => drupal_get_path('module', 'nems_core') . '/ckeditor/',
+    ),
+  );
+}
+
+/**
  * Implements hook_permission().
  */
 function nems_core_permission() {
