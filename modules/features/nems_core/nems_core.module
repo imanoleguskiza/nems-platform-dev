@@ -231,6 +231,7 @@ function nems_core_form_tb_megamenu_admin_settings_alter(&$form, &$form_state, $
 function nems_core_entity_view_alter(&$build, $type) {
   if ($type == 'file' && isset($build['field_tags'])) {
     unset($build['field_tags']);
+    unset($build['field_folder']);
   }
 }
 
