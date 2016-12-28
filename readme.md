@@ -197,6 +197,27 @@ You can now browse to your site on http://yourhostname/platform
 
 ### 11. Enable the NEMS features you need for your project  
 
+Make sure to enable all the NEMS features you need for your project. Please follow this order for enabling: 
+  
+   
+1. nems_core  
+2. nems_ multilingual_setup  
+3. nems_accordion  
+4. nems_ call_ for_externals  
+5. nems_ call_ for_proposals  
+6. nems_ call_ for_tenders  
+7. nems_ common_page  
+8. nems_ dynamic_submenu  
+9. nems_events  
+10. nems_gallery  
+11. nems_links  
+12. nems_news  
+13. nems_ press_releases  
+14. nems_publications 
+15. nems_slider  
+16. nems_vacancy  
+17. nems_ video_gallery 
+
 ## When in need of support  
 
 > You can contact the next-europa maintenance team by creating a jira ticket. We will be glad to help you out!  
