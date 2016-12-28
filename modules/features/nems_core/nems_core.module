@@ -35,16 +35,24 @@ function nems_core_nexteuropa_token_token_handlers() {
 }
 
 /**
- * Implements hook_ckeditor_plugin().
+ * Implements hook_wysiwyg_plugin().
+ *
  */
-function nems_core_ckeditor_ckeditor_plugin() {
-  return array(
-    'nems_core_ckeditor' => array(
-      'name' => 'nems_core_ckeditor',
-      'desc' => t('NEMS file Token'),
-      'path' => drupal_get_path('module', 'nems_core') . '/ckeditor/',
-    ),
-  );
+function nems_core_wysiwyg_plugin($editor, $version) {
+    $plugins = array();
+    switch ($editor) {
+      case 'ckeditor':
+        $plugins['nems_core_ckeditor'] = array(
+          'path' => drupal_get_path('module', 'nems_core') . '/ckeditor',
+          'filename' => 'plugin.js',
+          'load' => TRUE,
+          'buttons' => array(
+            'linkchange' => t('Linkchange'),
+          ),
+        );
+        break;
+    }
+    return $plugins;
 }
 
 /**
