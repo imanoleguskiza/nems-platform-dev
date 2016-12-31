@@ -38,7 +38,7 @@ function nems_core_nexteuropa_token_token_handlers() {
  * Implements hook_wysiwyg_plugin().
  *
  */
-function nems_core_wysiwyg_plugin($editor, $version) {
+/*function nems_core_wysiwyg_plugin($editor, $version) {
     $plugins = array();
     switch ($editor) {
       case 'ckeditor':
@@ -53,6 +53,77 @@ function nems_core_wysiwyg_plugin($editor, $version) {
         break;
     }
     return $plugins;
+}*/
+
+function nems_core_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'media_wysiwyg_format_form') {
+    $x = array_keys($form);
+    drupal_set_message(print_r($x,1));
+  }
+}
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function nems_core_entity_info_alter(&$entity_info) {
+  $entity_info['file']['view modes']['simple_link'] = array(
+    'label' => t('Simple link to file'),
+    'custom settings' => TRUE,
+  );
+}
+
+function nems_core_media_wysiwyg_format_form_prepare_alter(&$form, &$form_state, $file) {
+  if (isset($form_state['values']['format']) && $form_state['values']['format'] == 'simple_link') {
+    $preview = theme('simple_link', array('file' => $file));
+    $form['preview']['#markup'] = $preview;
+    $form_state['complete form']['#formats']['simple_link'] = $preview;
+    $form_state['complete form']['formatFormFormats']['simple_link'] = $preview;
+  }
+}
+
+/**
+ * Implements hook_media_wysiwyg_token_to_markup_alter().
+ */
+function nems_core_media_wysiwyg_token_to_markup_alter(&$element, $tag_info, $settings) {
+  if ($tag_info['view_mode'] == 'simple_link') {
+    $element['content'] = $element['content']['file'];
+    $element['content']['#theme'] = 'simple_link';
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function nems_core_theme($existing, $type, $theme, $path) {
+  return array(
+    'simple_link' => array(
+      'variables' => array('file' => NULL),
+    ),
+  );
+}
+
+/**
+ * theme_simple_link().
+ */
+function theme_simple_link($variables) {
+  $file = $variables['file'];
+  $url = file_create_url($file->uri);
+  $options = array(
+    'attributes' => array(
+      'type' => $file->filemime . '; length=' . $file->filesize,
+    ),
+  );
+
+  // Use the description as the link text if available.
+  if (empty($file->description)) {
+    $link_text = $file->filename;
+  }
+  else {
+    $link_text = $file->description;
+    $options['attributes']['title'] = check_plain($file->filename);
+  }
+
+  return l($link_text, $url, $options);
 }
 
 /**
