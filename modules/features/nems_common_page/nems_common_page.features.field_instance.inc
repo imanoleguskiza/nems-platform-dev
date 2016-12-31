@@ -140,7 +140,7 @@ function nems_common_page_field_default_field_instances() {
     'bundle' => 'common_page',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This field won\'t be displayed in the page. This content can be placed via a list block referencing "NEMS Related Content block"',
     'display' => array(
       'default' => array(
         'label' => 'above',

@@ -384,7 +384,7 @@ function nems_news_field_default_field_instances() {
     'bundle' => 'nems_news',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This field won\'t be displayed in the page. This content can be placed via a list block referencing "NEMS Related Content block"',
     'display' => array(
       'default' => array(
         'label' => 'above',
