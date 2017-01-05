@@ -154,7 +154,7 @@ function nems_core_disable() {
 /**
  * Remove the media_browser_plus taxonomy reference from file displays.
  */
-function nems_core_update_7201() {
+function nems_core_update_7202() {
   // Move media browser plus field_folder to hidden.
   $bundles = array('audio', 'document', 'image', 'video');
 
@@ -166,4 +166,6 @@ function nems_core_update_7201() {
       field_update_instance($instance_info);
     }
   }
+
+  module_enable(array('media_bulk_upload'));
 }

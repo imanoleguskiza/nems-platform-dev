@@ -55,8 +55,12 @@ function nems_core_nexteuropa_token_token_handlers() {
     return $plugins;
 }*/
 
-function nems_core_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == 'media_wysiwyg_format_form') {
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function nems_core_form_media_wysiwyg_format_form_alter(&$form, &$form_state, $form_id) {
+  // Set preview for simple link.
+  if ($form_state['values']['format'] == 'simple_link') {
     $form['preview']['#theme'] = 'simple_link';
   }
 }
@@ -69,15 +73,6 @@ function nems_core_entity_info_alter(&$entity_info) {
     'label' => t('Simple link to file'),
     'custom settings' => TRUE,
   );
-}
-
-function nems_core_media_wysiwyg_format_form_prepare_alter(&$form, &$form_state, $file) {
-  /*if (isset($form_state['values']['format']) && $form_state['values']['format'] == 'simple_link') {
-    $preview = theme('simple_link', array('file' => $file));
-    $form['preview']['#markup'] = $preview;
-    $form_state['complete form']['#formats']['simple_link'] = $preview;
-    $form_state['complete form']['formatFormFormats']['simple_link'] = $preview;
-  }*/
 }
 
 /**
