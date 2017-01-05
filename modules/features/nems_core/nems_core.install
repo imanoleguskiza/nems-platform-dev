@@ -152,10 +152,10 @@ function nems_core_disable() {
 }
 
 /**
- * Remove the media_browser_plus taxonomy reference from file displays.
+ * Implements hook_update__N().
  */
 function nems_core_update_7202() {
-  // Move media browser plus field_folder to hidden.
+  // Remove the media_browser_plus taxonomy reference from file displays.
   $bundles = array('audio', 'document', 'image', 'video');
 
   foreach ($bundles as $bundle) {
@@ -168,12 +168,8 @@ function nems_core_update_7202() {
   }
 
   module_enable(array('media_bulk_upload'));
-}
 
-/**
- * Alter Media browser settings (swap old tabs with MBP tabs)
- */
-function nems_core_update_7202() {
+  // Alter Media browser settings (swap old tabs with MBP tabs).
   // We update from here to avoid feature conflicts with ec_embedded_video.
   $value = array(
     0 => 'upload',
