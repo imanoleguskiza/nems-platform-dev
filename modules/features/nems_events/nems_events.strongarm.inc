@@ -118,19 +118,19 @@ function nems_events_strongarm() {
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '9',
         ),
         'language' => array(
-          'weight' => '2',
+          'weight' => '1',
         ),
         'xmlsitemap' => array(
           'weight' => '3',
         ),
         'metatags' => array(
-          'weight' => '11',
+          'weight' => '10',
         ),
         'rabbit_hole' => array(
-          'weight' => '0',
+          'weight' => '2',
         ),
       ),
       'display' => array(

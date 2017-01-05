@@ -23,10 +23,16 @@ function nems_dynamic_submenu_default_fe_block_settings() {
     'pages' => '',
     'roles' => array(),
     'themes' => array(
-      'nems_theme' => array(
+      'bartik' => array(
         'region' => '',
         'status' => 0,
-        'theme' => 'nems_theme',
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'ec_resp' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'ec_resp',
         'weight' => 0,
       ),
       'seven' => array(

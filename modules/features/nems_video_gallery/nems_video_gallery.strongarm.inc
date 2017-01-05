@@ -174,16 +174,16 @@ function nems_video_gallery_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '8',
         ),
         'language' => array(
           'weight' => '1',
         ),
         'metatags' => array(
-          'weight' => '8',
+          'weight' => '9',
         ),
         'rabbit_hole' => array(
-          'weight' => '1',
+          'weight' => '2',
         ),
       ),
       'display' => array(
@@ -268,14 +268,14 @@ function nems_video_gallery_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_file__video';
-  $strongarm->value = TRUE;
+  $strongarm->value = 1;
   $export['metatag_enable_file__video'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_node__video_gallery';
-  $strongarm->value = TRUE;
+  $strongarm->value = 1;
   $export['metatag_enable_node__video_gallery'] = $strongarm;
 
   $strongarm = new stdClass();

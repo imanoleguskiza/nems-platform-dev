@@ -153,10 +153,10 @@ function nems_slider_strongarm() {
           'weight' => '5',
         ),
         'path' => array(
-          'weight' => '3',
+          'weight' => '4',
         ),
         'rabbit_hole' => array(
-          'weight' => '8',
+          'weight' => '2',
         ),
         'language' => array(
           'weight' => '1',

@@ -171,13 +171,13 @@ function nems_common_page_strongarm() {
           'weight' => '9',
         ),
         'language' => array(
-          'weight' => '2',
-        ),
-        'rabbit_hole' => array(
           'weight' => '1',
         ),
+        'rabbit_hole' => array(
+          'weight' => '2',
+        ),
         'metatags' => array(
-          'weight' => '40',
+          'weight' => '10',
         ),
       ),
       'display' => array(),

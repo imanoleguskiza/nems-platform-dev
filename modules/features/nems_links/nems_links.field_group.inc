@@ -21,7 +21,7 @@ function nems_links_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Content',
-    'weight' => '2',
+    'weight' => '3',
     'children' => array(
       0 => 'body',
     ),
@@ -48,7 +48,7 @@ function nems_links_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Editorial team',
-    'weight' => '6',
+    'weight' => '7',
     'children' => array(
       0 => 'og_group_ref',
     ),
@@ -75,7 +75,7 @@ function nems_links_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Link target',
-    'weight' => '4',
+    'weight' => '6',
     'children' => array(
       0 => 'field_nems_main_file',
       1 => 'field_nems_main_link',
@@ -103,7 +103,7 @@ function nems_links_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Links Category',
-    'weight' => '3',
+    'weight' => '5',
     'children' => array(
       0 => 'field_nems_links_category',
     ),
@@ -130,7 +130,7 @@ function nems_links_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Tags',
-    'weight' => '5',
+    'weight' => '4',
     'children' => array(
       0 => 'field_tags',
     ),

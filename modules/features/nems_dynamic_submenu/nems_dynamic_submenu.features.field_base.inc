@@ -17,7 +17,6 @@ function nems_dynamic_submenu_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_nems_dynamic_submenu',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
