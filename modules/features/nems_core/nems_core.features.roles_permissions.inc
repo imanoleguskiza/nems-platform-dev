@@ -183,6 +183,7 @@ function nems_core_default_roles_permissions() {
       'add terms in tags' => TRUE,
       'administer beans' => TRUE,
       'administer blocks' => TRUE,
+      'administer block classes' => TRUE,
       'administer content translations' => TRUE,
       'administer files' => TRUE,
       'administer group' => TRUE,

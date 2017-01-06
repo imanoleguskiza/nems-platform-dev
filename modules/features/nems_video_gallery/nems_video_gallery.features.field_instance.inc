@@ -40,6 +40,12 @@ function nems_video_gallery_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'simple_link' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'file',
     'field_name' => 'field_nems_video_thumbnail',
@@ -119,6 +125,12 @@ function nems_video_gallery_field_default_field_instances() {
         'weight' => 0,
       ),
       'wysiwyg' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'simple_link' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',

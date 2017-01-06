@@ -8,6 +8,9 @@ projects[admin_language][version] = "1.0-beta1"
 projects[block_access][subdir] = "contrib"
 projects[block_access][version] = "1.6"
 
+projects[block_class][subdir] = "contrib"
+projects[block_class][version] = "2.3"
+
 projects[blockreference][subdir] = "contrib"
 projects[blockreference][version] = "2.3"
 
