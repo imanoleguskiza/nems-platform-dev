@@ -190,6 +190,7 @@ function nems_core_default_roles_permissions() {
       'administer languages' => TRUE,
       'administer main-menu menu items' => TRUE,
       'administer menu attributes' => TRUE,
+      'administer menu-breadcrumb-menu menu items' => TRUE,
       'administer menu-service-tools menu items' => TRUE,
       'administer menu_token' => TRUE,
       'administer nodes' => TRUE,
