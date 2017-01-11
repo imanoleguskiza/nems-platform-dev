@@ -17,8 +17,6 @@ const NEMS_CORE_BLOCK_RESTRICTIONS = array(
   ),
   'tb_megamenu' => array(
     'management',
-    'menu-breadcrumb-menu',
-    'menu-service-tools',
     'navigation',
     'user-menu',
   ),
