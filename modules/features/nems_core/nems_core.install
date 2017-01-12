@@ -165,6 +165,7 @@ function nems_core_update_7202() {
     }
   }
 
+  // Enable multiple edit for MBP.
   module_enable(array('media_bulk_upload'));
 
   // Alter Media browser settings (swap old tabs with MBP tabs).
@@ -177,4 +178,7 @@ function nems_core_update_7202() {
   );
 
   variable_set('media_wysiwyg_wysiwyg_browser_plugins', $value);
+
+  // Disable pathologic, see #NEXTEUROPA-14593.
+  module_disable(array('pathologic'));
 }

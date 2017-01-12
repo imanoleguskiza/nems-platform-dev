@@ -37,7 +37,6 @@ dependencies[] = nexteuropa_multilingual
 dependencies[] = nexteuropa_webtools
 dependencies[] = nodeblock
 dependencies[] = options
-dependencies[] = pathologic
 dependencies[] = role_delegation
 dependencies[] = site_map
 dependencies[] = strongarm

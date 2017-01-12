@@ -203,6 +203,31 @@ function nems_core_menu_alter(&$items) {
 }
 
 /**
+ * Implements hook_menu().
+ */
+function nems_core_menu() {
+  // Admin_menu does not render menu items allowed by menu_admin_per_menu,
+  // So as a work around I add them back like this.
+  $menus = menu_get_menus();
+  $webmaster_menus = array('menu-breadcrumb-menu', 'main-menu', 'menu-service-tools');
+
+  foreach ($webmaster_menus as $mid) {
+    $menu = menu_load($mid);
+    $items['admin/structure/menu/manage/' . $mid . '/list'] = array(
+      'title' => $menus[$mid],
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('menu_overview_form', $menu),
+      'access callback' => '_nems_core_menu_item_access',
+      'access arguments' => array($menu),
+      'file' => 'menu.admin.inc',
+      'file path' => drupal_get_path('module', 'menu'),
+    );
+  }
+
+  return $items;
+}
+
+/**
  * Implements hook_module_implements_alter().
  */
 function nems_core_module_implements_alter(&$implementations, $hook) {
@@ -237,6 +262,24 @@ function nems_core_form_alter(&$form, &$form_state, $form_id) {
  */
 function _nems_core_menu_block_access($account = NULL) {
   return user_access('administer blocks', $account);
+}
+
+/**
+ * Determine whether the user has permission to see these items.
+ *
+ * @param array $menu
+ *   The menu item viwed.
+ * @return bool
+ *   The result.
+ */
+function _nems_core_menu_item_access($menu = NULL) {
+  global $user;
+
+  if (!in_array('webmaster', $user->roles)) {
+    return FALSE;
+  }
+
+  return _menu_admin_per_menu_menu_access($menu);
 }
 
 /**
