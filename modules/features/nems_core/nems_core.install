@@ -26,6 +26,7 @@ const NEMS_CORE_BLOCK_RESTRICTIONS = array(
  * Implements hook_install().
  */
 function nems_core_install() {
+  variable_set('ecas_account_option', 0);
   variable_set('views_localize_all', TRUE);
   variable_set('node_admin_theme', TRUE);
 
@@ -181,4 +182,7 @@ function nems_core_update_7202() {
 
   // Disable pathologic, see #NEXTEUROPA-14593.
   module_disable(array('pathologic'));
+
+  // In NEMS these autoregistered users are BLOCKED #NEXTEUROPA-14116.
+  variable_set('ecas_account_option', 0);
 }
