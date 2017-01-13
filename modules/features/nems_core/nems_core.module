@@ -499,3 +499,53 @@ function _nems_core_user_access($permissions, $account = NULL) {
   }
   return $access;
 }
+
+/**
+ * Implements hook_post_features_revert().
+ */
+function nems_core_post_features_revert($component) {
+  if ($component == 'variable') {
+    // Remove the media_browser_plus taxonomy reference from file displays.
+    $bundles = array('audio', 'document', 'image', 'video');
+
+    foreach ($bundles as $bundle) {
+      $instance_info = field_info_instance('file', 'field_folder', $bundle);
+
+      if (!empty($instance_info)) {
+        $instance_info['display']['default']['type'] = 'hidden';
+        field_update_instance($instance_info);
+      }
+    }
+
+    // Enable multiple edit for MBP.
+    module_enable(array('media_bulk_upload'));
+
+    // Alter Media browser settings (swap old tabs with MBP tabs).
+    // We update from here to avoid feature conflicts with ec_embedded_video.
+    $value = array(
+      0 => 'upload',
+      1 => 'media_browser_plus--media_browser_thumbnails',
+      2 => 'media_browser_plus--media_browser_my_files',
+      3 => 'media_internet',
+    );
+
+    variable_set('media_wysiwyg_wysiwyg_browser_plugins', $value);
+
+    // Disable pathologic, see #NEXTEUROPA-14593.
+    module_disable(array('pathologic'));
+
+    // In NEMS these autoregistered users are BLOCKED #NEXTEUROPA-14116.
+    variable_set('ecas_account_option', 0);
+  }
+}
+
+/**
+ * Implements hook_views_default_views_alter().
+ */
+function nems_core_views_default_views_alter(&$views) {
+  if (isset($views['media_browser_plus'])) {
+    // NEMS defines the MBP tabs as default, so we set the correct titles here.
+    $views['media_browser_plus']->display['media_browser_thumbnails']->display_options['title'] = t('Library');
+    $views['media_browser_plus']->display['media_browser_my_files']->display_options['title'] = t('My files');
+  }
+}
