@@ -104,7 +104,7 @@ function nems_common_page_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Upload files',
-    'weight' => '5',
+    'weight' => '7',
     'children' => array(
       0 => 'field_nems_core_file',
     ),
@@ -131,7 +131,7 @@ function nems_common_page_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Tags',
-    'weight' => '7',
+    'weight' => '5',
     'children' => array(
       0 => 'field_tags',
     ),

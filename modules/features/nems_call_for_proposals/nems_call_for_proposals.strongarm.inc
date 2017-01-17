@@ -99,13 +99,16 @@ function nems_call_for_proposals_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '7',
+          'weight' => '8',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '7',
         ),
         'language' => array(
           'weight' => '1',
+        ),
+        'rabbit_hole' => array(
+          'weight' => '2',
         ),
       ),
       'display' => array(),
@@ -124,7 +127,9 @@ function nems_call_for_proposals_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'i18n_node_options_nems_call_for_proposals';
-  $strongarm->value = array();
+  $strongarm->value = array(
+    0 => 'required',
+  );
   $export['i18n_node_options_nems_call_for_proposals'] = $strongarm;
 
   $strongarm = new stdClass();

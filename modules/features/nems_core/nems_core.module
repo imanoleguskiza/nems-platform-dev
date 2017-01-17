@@ -35,28 +35,11 @@ function nems_core_nexteuropa_token_token_handlers() {
 }
 
 /**
- * Implements hook_wysiwyg_plugin().
- *
+ * Implements hook_form_FORM_ID_alter().
  */
-/*function nems_core_wysiwyg_plugin($editor, $version) {
-    $plugins = array();
-    switch ($editor) {
-      case 'ckeditor':
-        $plugins['nems_core_ckeditor'] = array(
-          'path' => drupal_get_path('module', 'nems_core') . '/ckeditor',
-          'filename' => 'plugin.js',
-          'load' => TRUE,
-          'buttons' => array(
-            'linkchange' => t('Linkchange'),
-          ),
-        );
-        break;
-    }
-    return $plugins;
-}*/
-
-function nems_core_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == 'media_wysiwyg_format_form') {
+function nems_core_form_media_wysiwyg_format_form_alter(&$form, &$form_state, $form_id) {
+  // Set preview for simple link.
+  if (isset($form_state['values']) && $form_state['values']['format'] == 'simple_link') {
     $form['preview']['#theme'] = 'simple_link';
   }
 }
@@ -69,15 +52,6 @@ function nems_core_entity_info_alter(&$entity_info) {
     'label' => t('Simple link to file'),
     'custom settings' => TRUE,
   );
-}
-
-function nems_core_media_wysiwyg_format_form_prepare_alter(&$form, &$form_state, $file) {
-  /*if (isset($form_state['values']['format']) && $form_state['values']['format'] == 'simple_link') {
-    $preview = theme('simple_link', array('file' => $file));
-    $form['preview']['#markup'] = $preview;
-    $form_state['complete form']['#formats']['simple_link'] = $preview;
-    $form_state['complete form']['formatFormFormats']['simple_link'] = $preview;
-  }*/
 }
 
 /**
@@ -229,6 +203,55 @@ function nems_core_menu_alter(&$items) {
 }
 
 /**
+ * Implements hook_menu().
+ */
+function nems_core_menu() {
+  // Admin_menu does not render menu items allowed by menu_admin_per_menu,
+  // So as a work around I add them back like this.
+  $menus = menu_get_menus();
+  $webmaster_menus = array('menu-breadcrumb-menu', 'main-menu', 'menu-service-tools');
+
+  foreach ($webmaster_menus as $mid) {
+    $menu = menu_load($mid);
+    $items['admin/structure/menu/manage/' . $mid . '/list'] = array(
+      'title' => $menus[$mid],
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('menu_overview_form', $menu),
+      'access callback' => '_nems_core_menu_item_access',
+      'access arguments' => array($menu),
+      'file' => 'menu.admin.inc',
+      'file path' => drupal_get_path('module', 'menu'),
+    );
+  }
+
+  return $items;
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function nems_core_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter') {
+    $group = $implementations['nems_core'];
+    unset($implementations['nems_core']);
+    $implementations['nems_core'] = $group;
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function nems_core_form_alter(&$form, &$form_state, $form_id) {
+  if (isset($form['type']) && isset($form['type']['#value']) && $form_id == $form['type']['#value'] . '_node_form') {
+    if (isset($form['language'])) {
+      // Ensure correct language list (no disabled languages should be present).
+      $languages = i18n_node_language_list($form['#node']);
+      $form['language']['#options'] = $languages;
+    }
+  }
+}
+
+/**
  * Determine whether the user has permission to use menu_block module.
  *
  * @param object $account
@@ -239,6 +262,37 @@ function nems_core_menu_alter(&$items) {
  */
 function _nems_core_menu_block_access($account = NULL) {
   return user_access('administer blocks', $account);
+}
+
+/**
+ * Determine whether the user has permission to see these items.
+ *
+ * @param array $menu
+ *   The menu item viwed.
+ * @return bool
+ *   The result.
+ */
+function _nems_core_menu_item_access($menu = NULL) {
+  global $user;
+
+  if (!in_array('webmaster', $user->roles)) {
+    return FALSE;
+  }
+
+  return _menu_admin_per_menu_menu_access($menu);
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function nems_core_node_access($node, $op, $account) {
+  $type = is_string($node) ? $node : $node->type;
+
+  if (in_array($type, array('page', 'article')) && in_array('webmaster', $account->roles)) {
+    return NODE_ACCESS_DENY;
+  }
+
+  return NODE_ACCESS_IGNORE;
 }
 
 /**
@@ -447,13 +501,51 @@ function _nems_core_user_access($permissions, $account = NULL) {
 }
 
 /**
- * Implements hook_node_access().
+ * Implements hook_post_features_revert().
  */
-function nems_core_node_access($node, $op, $account) {
-  global $user;
-  $type = is_string($node) ? $node : $node->type;
+function nems_core_post_features_revert($component) {
+  if ($component == 'variable') {
+    // Remove the media_browser_plus taxonomy reference from file displays.
+    $bundles = array('audio', 'document', 'image', 'video');
 
-  if (in_array($type, array('page', 'article')) && in_array('webmaster', $user->roles)) {
-    return NODE_ACCESS_DENY;
+    foreach ($bundles as $bundle) {
+      $instance_info = field_info_instance('file', 'field_folder', $bundle);
+
+      if (!empty($instance_info)) {
+        $instance_info['display']['default']['type'] = 'hidden';
+        field_update_instance($instance_info);
+      }
+    }
+
+    // Enable multiple edit for MBP.
+    module_enable(array('media_bulk_upload'));
+
+    // Alter Media browser settings (swap old tabs with MBP tabs).
+    // We update from here to avoid feature conflicts with ec_embedded_video.
+    $value = array(
+      0 => 'upload',
+      1 => 'media_browser_plus--media_browser_thumbnails',
+      2 => 'media_browser_plus--media_browser_my_files',
+      3 => 'media_internet',
+    );
+
+    variable_set('media_wysiwyg_wysiwyg_browser_plugins', $value);
+
+    // Disable pathologic, see #NEXTEUROPA-14593.
+    module_disable(array('pathologic'));
+
+    // In NEMS these autoregistered users are BLOCKED #NEXTEUROPA-14116.
+    variable_set('ecas_account_option', 0);
+  }
+}
+
+/**
+ * Implements hook_views_default_views_alter().
+ */
+function nems_core_views_default_views_alter(&$views) {
+  if (isset($views['media_browser_plus'])) {
+    // NEMS defines the MBP tabs as default, so we set the correct titles here.
+    $views['media_browser_plus']->display['media_browser_thumbnails']->display_options['title'] = t('Library');
+    $views['media_browser_plus']->display['media_browser_my_files']->display_options['title'] = t('My files');
   }
 }

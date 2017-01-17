@@ -48,7 +48,7 @@ function nems_events_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'External Link',
-    'weight' => '5',
+    'weight' => '6',
     'children' => array(
       0 => 'field_nems_core_external_url',
     ),
@@ -106,7 +106,7 @@ function nems_events_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Events Category',
-    'weight' => '4',
+    'weight' => '5',
     'children' => array(
       0 => 'field_nems_events_category',
     ),
@@ -133,7 +133,7 @@ function nems_events_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Upload files',
-    'weight' => '6',
+    'weight' => '7',
     'children' => array(
       0 => 'field_nems_core_file',
     ),
@@ -160,7 +160,7 @@ function nems_events_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Tags',
-    'weight' => '7',
+    'weight' => '4',
     'children' => array(
       0 => 'field_tags',
     ),
