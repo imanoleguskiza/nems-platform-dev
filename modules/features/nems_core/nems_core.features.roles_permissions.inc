@@ -85,6 +85,7 @@ function nems_core_default_roles_permissions() {
       'add media from remote sources' => TRUE,
       'add terms in classification' => TRUE,
       'add terms in tags' => TRUE,
+      'add terms in media_folders' => TRUE,
       'administer beans' => TRUE,
       'administer blocks' => TRUE,
       'administer content translations' => TRUE,
@@ -204,6 +205,25 @@ function nems_core_default_roles_permissions() {
       'view the administration theme' => TRUE,
     ),
   );
+
+  $media_folders = taxonomy_vocabulary_machine_name_load('media_folders');
+  $classification = taxonomy_vocabulary_machine_name_load('classification');
+  $tags = taxonomy_vocabulary_machine_name_load('tags');
+
+  if (!empty($media_folders)) {
+    $roles['webmaster']->permissions["edit terms in {$media_folders->vid}"] = TRUE;
+    $roles['webmaster']->permissions["delete terms in {$media_folders->vid}"] = TRUE;
+  }
+
+  if (!empty($classification)) {
+    $roles['webmaster']->permissions["edit terms in {$classification->vid}"] = TRUE;
+    $roles['webmaster']->permissions["delete terms in {$classification->vid}"] = TRUE;
+  }
+
+  if (!empty($tags)) {
+    $roles['webmaster']->permissions["edit terms in {$tags->vid}"] = TRUE;
+    $roles['webmaster']->permissions["delete terms in {$tags->vid}"] = TRUE;
+  }
 
   return $roles;
 }
