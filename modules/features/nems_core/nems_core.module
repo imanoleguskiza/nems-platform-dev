@@ -200,6 +200,91 @@ function nems_core_menu_alter(&$items) {
   // Restrict access to administrator users.
   $items['user/%user/edit']['access callback'] = '_nems_core_user_edit_access';
   $items['user/%user/cancel']['access callback'] = '_nems_core_user_edit_access';
+
+  // Try to fix fielfield_sources autocomplete
+  if (isset($items['file/reference/%/%/%'])) {
+    $items['file/reference/%/%/%']['page callback'] = 'nems_core_filefield_source_reference_autocomplete';
+  }
+}
+
+/**
+ * Menu callback; autocomplete.js callback to return a list of files.
+ */
+function nems_core_filefield_source_reference_autocomplete($entity_type, $bundle_name, $field_name, $filename) {
+  $field = field_info_instance($entity_type, $field_name, $bundle_name);
+
+  $items = array();
+  if (!empty($field)) {
+    $files = _nems_core_filefield_source_reference_get_files($filename, $field);
+    foreach ($files as $fid => $file) {
+      $items[$file->filename ." [fid:$fid]"] = theme('filefield_source_reference_autocomplete_item', array('file' => $file));
+    }
+  }
+
+  drupal_json_output($items);
+}
+
+/**
+ * Get all the files used within a particular field (or all fields).
+ *
+ * @param $file_name
+ *   The partial name of the file to retrieve.
+ * @param $instance
+ *   Optional. A CCK field array for which to filter returned files.
+ */
+function _nems_core_filefield_source_reference_get_files($filename, $instance = NULL) {
+  if (isset($instance)) {
+    // If we are looking at a single field, cache its settings, in case we want to search all fields.
+    $setting_autocomplete = empty($instance['widget']['settings']['filefield_sources']['source_reference']['autocomplete']) ? 0 : 1;
+    $setting_search_all_fields = empty($instance['widget']['settings']['filefield_sources']['source_reference']['search_all_fields']) ? 0 : 1;
+  }
+
+  $instances = array();
+  if (!isset($instance) || $setting_search_all_fields) {
+    foreach (field_info_fields() as $instance) {
+      if ($instance['type'] == 'file' || $instance['type'] == 'image') {
+        $instances[] = $instance;
+      }
+    }
+  }
+  else {
+    $instances = array($instance);
+  }
+
+  $files = array();
+  foreach ($instances as $instance) {
+    // Load the field data, which contains the schema information.
+    $field = field_info_field($instance['field_name']);
+
+    // We don't support fields that are not stored with SQL.
+    if (!isset($field['storage']['details']['sql']['FIELD_LOAD_CURRENT'])) {
+      continue;
+    }
+
+    // If we are searching all fields, use the autocomplete settings from the source field.
+    if (!empty($setting_search_all_fields)) {
+      $instance['widget']['settings']['filefield_sources']['source_reference']['autocomplete'] = empty($setting_autocomplete) ? 0 : 1;
+    }
+
+    // 1 == contains, 0 == starts with.
+    $like = empty($instance['widget']['settings']['filefield_sources']['source_reference']['autocomplete']) ? (db_like($filename) . '%') : ('%' . db_like($filename) . '%');
+
+    $query = db_select('file_managed', 'f');
+    $query->fields('f');
+    $query->condition('f.status', 1);
+    $query->condition('f.filename', $like, 'LIKE');
+    $query->orderBy('f.timestamp', 'DESC');
+    $query->groupBy('f.fid');
+    $query->range(0, 30);
+    $query->addTag('filefield_source_reference_list');
+    $result = $query->execute();
+
+    foreach ($result as $file) {
+      $files[$file->fid] = $file;
+    }
+  }
+
+  return $files;
 }
 
 /**
@@ -209,7 +294,7 @@ function nems_core_menu() {
   // Admin_menu does not render menu items allowed by menu_admin_per_menu,
   // So as a work around I add them back like this.
   $menus = menu_get_menus();
-  $webmaster_menus = array('menu-breadcrumb-menu', 'main-menu', 'menu-service-tools');
+  $webmaster_menus = array('menu-breadcrumb-menu', 'menu-service-tools');
 
   foreach ($webmaster_menus as $mid) {
     $menu = menu_load($mid);
