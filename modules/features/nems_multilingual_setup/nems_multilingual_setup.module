@@ -1,6 +1,12 @@
 <?php
 /**
  * @file
+ * Code for the NEMS multilingual setup feature.
+ */
+
+include_once 'nems_multilingual_setup.features.inc';
+/**
+ * @file
  * Code for the nems_multilingual_setup feature.
  */
 

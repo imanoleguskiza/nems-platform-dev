@@ -44,22 +44,6 @@ function nems_core_filter_default_formats() {
         'status' => 1,
         'settings' => array(),
       ),
-      'pathologic' => array(
-        'weight' => 50,
-        'status' => 1,
-        'settings' => array(
-          'settings_source' => 'local',
-          'local_paths' => '',
-          'protocol_style' => 'full',
-          'local_settings' => array(
-            'protocol_style' => 'full',
-            'local_paths' => 'http://127.0.0.1/platform/
-http://nems/
-/nems/
-            /',
-          ),
-        ),
-      ),
     ),
   );
 
@@ -98,22 +82,6 @@ http://nems/
         'status' => 1,
         'settings' => array(),
       ),
-      'pathologic' => array(
-        'weight' => -39,
-        'status' => 1,
-        'settings' => array(
-          'settings_source' => 'local',
-          'local_paths' => '',
-          'protocol_style' => 'full',
-          'local_settings' => array(
-            'protocol_style' => 'full',
-            'local_paths' => 'http://127.0.0.1/platform/
-http://nems/
-/nems/
-            /',
-          ),
-        ),
-      ),
       'insert_block' => array(
         'weight' => -38,
         'status' => 1,
@@ -148,22 +116,6 @@ http://nems/
         'weight' => 2,
         'status' => 1,
         'settings' => array(),
-      ),
-      'pathologic' => array(
-        'weight' => 50,
-        'status' => 1,
-        'settings' => array(
-          'settings_source' => 'local',
-          'local_paths' => '',
-          'protocol_style' => 'full',
-          'local_settings' => array(
-            'protocol_style' => 'full',
-            'local_paths' => 'http://127.0.0.1/platform/
-http://nems/
-/nems/
-            /',
-          ),
-        ),
       ),
     ),
   );

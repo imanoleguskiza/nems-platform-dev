@@ -55,8 +55,7 @@ function nems_press_releases_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance:
-  // 'node-press_releases-field_nems_pr_keywords'.
+  // Exported field_instance: 'node-press_releases-field_nems_pr_keywords'.
   $field_instances['node-press_releases-field_nems_pr_keywords'] = array(
     'bundle' => 'press_releases',
     'default_value' => NULL,
@@ -93,12 +92,11 @@ function nems_press_releases_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 7,
+      'weight' => 5,
     ),
   );
 
-  // Exported field_instance:
-  // 'node-press_releases-field_nems_pr_main_link'.
+  // Exported field_instance: 'node-press_releases-field_nems_pr_main_link'.
   $field_instances['node-press_releases-field_nems_pr_main_link'] = array(
     'bundle' => 'press_releases',
     'default_value' => NULL,
@@ -151,7 +149,7 @@ function nems_press_releases_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 1,
+      'weight' => 4,
     ),
   );
 

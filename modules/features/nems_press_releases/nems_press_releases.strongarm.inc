@@ -84,16 +84,19 @@ function nems_press_releases_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '5',
+          'weight' => '7',
         ),
         'xmlsitemap' => array(
           'weight' => '7',
         ),
         'rabbit_hole' => array(
-          'weight' => '0',
+          'weight' => '2',
         ),
         'language' => array(
-          'weight' => '5',
+          'weight' => '1',
+        ),
+        'metatags' => array(
+          'weight' => '8',
         ),
       ),
       'display' => array(),

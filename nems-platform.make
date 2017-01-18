@@ -8,6 +8,9 @@ projects[admin_language][version] = "1.0-beta1"
 projects[block_access][subdir] = "contrib"
 projects[block_access][version] = "1.6"
 
+projects[block_class][subdir] = "contrib"
+projects[block_class][version] = "2.3"
+
 projects[blockreference][subdir] = "contrib"
 projects[blockreference][version] = "2.3"
 
@@ -59,9 +62,6 @@ projects[nodeblock][version] = "1.7"
 
 projects[owlcarousel][subdir] = "contrib"
 projects[owlcarousel][version] = "1.5"
-
-projects[pathologic][subdir] = "contrib"
-projects[pathologic][version] = "3.1"
 
 projects[rabbit_hole][subdir] = "contrib"
 projects[rabbit_hole][version] = "2.23"

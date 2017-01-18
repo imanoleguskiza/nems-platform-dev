@@ -285,30 +285,14 @@ function nems_publications_field_default_field_instances() {
         'allowed_types' => array(
           'image' => 'image',
         ),
-        'browser_plugins' => array(),
-        'filefield_sources' => array(
-          'filefield_sources' => array(
-            'attach' => 0,
-            'clipboard' => 0,
-            'plupload' => 0,
-            'reference' => 0,
-            'remote' => 0,
-            'upload' => 'upload',
-          ),
-          'source_attach' => array(
-            'absolute' => 0,
-            'attach_mode' => 'move',
-            'path' => 'file_attach',
-          ),
-          'source_imce' => array(
-            'imce_mode' => 0,
-          ),
-          'source_reference' => array(
-            'autocomplete' => 0,
-          ),
+        'browser_plugins' => array(
+          'media_browser_plus--media_browser_my_files' => 'media_browser_plus--media_browser_my_files',
+          'media_browser_plus--media_browser_thumbnails' => 'media_browser_plus--media_browser_thumbnails',
+          'media_default--media_browser_1' => 0,
+          'media_default--media_browser_my_files' => 0,
+          'media_internet' => 'media_internet',
+          'upload' => 'upload',
         ),
-        'preview_image_style' => 'homepage_thumbs',
-        'progress_indicator' => 'throbber',
       ),
       'type' => 'media_generic',
       'weight' => -3,
@@ -321,7 +305,7 @@ function nems_publications_field_default_field_instances() {
     'bundle' => 'nems_publication',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This field won\'t be displayed in the page. This content can be placed via a list block referencing "NEMS Related Content block"',
     'display' => array(
       'default' => array(
         'label' => 'above',

@@ -178,16 +178,16 @@ function nems_gallery_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '2',
+          'weight' => '8',
         ),
         'language' => array(
           'weight' => '1',
         ),
         'metatags' => array(
-          'weight' => '7',
+          'weight' => '9',
         ),
         'rabbit_hole' => array(
-          'weight' => '1',
+          'weight' => '2',
         ),
       ),
       'display' => array(

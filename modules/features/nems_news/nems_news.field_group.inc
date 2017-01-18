@@ -48,7 +48,7 @@ function nems_news_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'External Link',
-    'weight' => '5',
+    'weight' => '6',
     'children' => array(
       0 => 'field_nems_core_external_url',
     ),
@@ -75,7 +75,7 @@ function nems_news_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Upload files',
-    'weight' => '6',
+    'weight' => '7',
     'children' => array(
       0 => 'field_nems_core_file',
     ),
@@ -102,7 +102,7 @@ function nems_news_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'News Category',
-    'weight' => '4',
+    'weight' => '5',
     'children' => array(
       0 => 'field_nems_news_category',
     ),
@@ -159,7 +159,7 @@ function nems_news_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Tags',
-    'weight' => '6',
+    'weight' => '4',
     'children' => array(
       0 => 'field_tags',
     ),

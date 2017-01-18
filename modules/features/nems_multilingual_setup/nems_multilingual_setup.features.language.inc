@@ -16,7 +16,7 @@ function nems_multilingual_setup_locale_default_languages() {
     'name' => 'Bulgarian',
     'native' => 'Български',
     'direction' => 0,
-    'enabled' => 1,
+    'enabled' => 0,
     'plurals' => 0,
     'formula' => '',
     'domain' => '',
@@ -85,7 +85,7 @@ function nems_multilingual_setup_locale_default_languages() {
     'plurals' => 0,
     'formula' => '',
     'domain' => '',
-    'prefix' => '',
+    'prefix' => 'en',
     'weight' => 0,
   );
   // Exported language: es.

@@ -51,7 +51,7 @@ function nems_vacancy_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 4,
+      'weight' => 9,
     ),
   );
 
@@ -107,7 +107,7 @@ function nems_vacancy_field_default_field_instances() {
         'year_range' => '-9:+9',
       ),
       'type' => 'date_popup',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -172,7 +172,7 @@ function nems_vacancy_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 8,
+      'weight' => 7,
     ),
   );
 
@@ -239,7 +239,7 @@ function nems_vacancy_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -279,7 +279,7 @@ function nems_vacancy_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
