@@ -63,9 +63,6 @@ projects[nodeblock][version] = "1.7"
 projects[owlcarousel][subdir] = "contrib"
 projects[owlcarousel][version] = "1.5"
 
-projects[pathologic][subdir] = "contrib"
-projects[pathologic][version] = "3.1"
-
 projects[rabbit_hole][subdir] = "contrib"
 projects[rabbit_hole][version] = "2.23"
 

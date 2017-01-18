@@ -10,6 +10,7 @@ dependencies[] = field_group
 dependencies[] = file
 dependencies[] = link
 dependencies[] = nems_call_for_externals
+dependencies[] = nems_core
 dependencies[] = node
 dependencies[] = og
 dependencies[] = options
