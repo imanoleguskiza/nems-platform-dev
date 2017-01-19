@@ -70,6 +70,7 @@ features[variable][] = entity_translation_node_metadata_nems_slide
 features[variable][] = entity_translation_node_metadata_slider
 features[variable][] = field_bundle_settings_bean__slider
 features[variable][] = field_bundle_settings_node__nems_slide
+features[variable][] = i18n_node_options_nems_slide
 features[variable][] = language_content_type_nems_slide
 features[variable][] = language_content_type_slider
 features[variable][] = menu_options_nems_slide
