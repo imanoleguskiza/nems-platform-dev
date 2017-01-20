@@ -5,6 +5,7 @@
  */
 
 include_once 'nems_core.features.inc';
+include_once 'nems_core.platform_overrides.inc';
 
 define("NEMS_CORE_BLOCK_ACCESS_ROLE", 6);
 const NEMS_CORE_BLOCK_ACCESS_PERMISSIONS = array(
