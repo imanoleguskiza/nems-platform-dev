@@ -464,15 +464,20 @@ function nems_core_form_tb_megamenu_admin_settings_alter(&$form, &$form_state, $
 }
 
 /**
- * Implements hook_form_FORM_ID_alter().
+ * Implements hook_entity_view_alter().
  *
  * Remove tags from dispaly mode of all file entities.
  */
 function nems_core_entity_view_alter(&$build, $type) {
-  if ($type == 'file' && isset($build['field_tags'])) {
-    unset($build['field_tags']);
-    unset($build['field_folder']);
+  if ($type == 'file') {
+    if (isset($build['field_tags'])) {
+      unset($build['field_tags']);
+    }
+    if (isset($build['field_folder'])) {
+      unset($build['field_folder']);
+    }
   }
+
 }
 
 /**
