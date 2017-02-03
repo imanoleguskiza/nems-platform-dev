@@ -305,7 +305,7 @@ function nems_events_field_default_field_instances() {
     'bundle' => 'nems_event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This field won\'t be displayed in the page. This content can be placed via a list block referencing "NEMS Related Content block"',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -336,6 +336,7 @@ function nems_events_field_default_field_instances() {
           'basic_html' => 'basic_html',
           'filtered_html' => 'filtered_html',
           'full_html' => 'full_html',
+          'full_html_track' => 0,
           'plain_text' => 'plain_text',
         ),
         'allowed_formats_toggle' => 1,
@@ -349,6 +350,9 @@ function nems_events_field_default_field_instances() {
               'weight' => -9,
             ),
             'full_html' => array(
+              'weight' => -10,
+            ),
+            'full_html_track' => array(
               'weight' => -10,
             ),
             'plain_text' => array(
@@ -845,6 +849,7 @@ function nems_events_field_default_field_instances() {
   t('Related Document(s)');
   t('Tags');
   t('The external link can be used to refer to events located in other sites. If this field is filled, the rest of the content fields will be ignored.');
+  t('This field won\'t be displayed in the page. This content can be placed via a list block referencing "NEMS Related Content block"');
   t('Title');
 
   return $field_instances;
