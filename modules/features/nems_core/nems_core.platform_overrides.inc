@@ -171,6 +171,22 @@ function nems_core_strongarm_alter(&$items) {
     // In NEMS these autoregistered users are BLOCKED #NEXTEUROPA-14116.
     $items['ecas_account_option']->value = 0;
   }
+  // #NEXTEUROPA-14200
+  if (!empty($items['metatag_enable_file'])) {
+    $items['metatag_enable_file']->value = 0;
+  }
+  if (!empty($items['metatag_enable_file__audio'])) {
+    $items['metatag_enable_file__audio']->value = 0;
+  }
+  if (!empty($items['metatag_enable_file__document'])) {
+    $items['metatag_enable_file__document']->value = 0;
+  }
+  if (!empty($items['metatag_enable_file__image'])) {
+    $items['metatag_enable_file__image']->value = 0;
+  }
+  if (!empty($items['metatag_enable_file__video'])) {
+    $items['metatag_enable_file__video']->value = 0;
+  }
 }
 
 /**
