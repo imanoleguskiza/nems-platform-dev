@@ -139,3 +139,52 @@ function nems_core_user_default_permissions_alter(&$permissions) {
     $permissions['moderate content from needs_review to published']['roles']['webmaster'] = 'webmaster';
   }
 }
+
+/**
+ * Implements hook_views_default_views_alter().
+ */
+function nems_core_views_default_views_alter(&$views) {
+  if (isset($views['media_browser_plus'])) {
+    // NEMS defines the MBP tabs as default, so we set the correct titles here.
+    $views['media_browser_plus']->display['media_browser_thumbnails']->display_options['title'] = t('Library');
+    $views['media_browser_plus']->display['media_browser_my_files']->display_options['title'] = t('My files');
+  }
+}
+
+/**
+ * Implements hook_strongarm_alter().
+ */
+function nems_core_strongarm_alter(&$items) {
+  if (!empty($items['media_wysiwyg_wysiwyg_browser_plugins'])) {
+    // Alter Media browser settings (swap old tabs with MBP tabs).
+    // We update from here to avoid feature conflicts with ec_embedded_video.
+    $value = array(
+      0 => 'upload',
+      1 => 'media_browser_plus--media_browser_thumbnails',
+      2 => 'media_browser_plus--media_browser_my_files',
+      3 => 'media_internet',
+    );
+
+    $items['media_wysiwyg_wysiwyg_browser_plugins']->value = $value;
+  }
+  if (!empty($items['ecas_account_option'])) {
+    // In NEMS these autoregistered users are BLOCKED #NEXTEUROPA-14116.
+    $items['ecas_account_option']->value = 0;
+  }
+}
+
+/**
+ * Implements hook_entity_view_alter().
+ *
+ * Remove tags from dispaly mode of all file entities.
+ */
+function nems_core_entity_view_alter(&$build, $type) {
+  if ($type == 'file') {
+    if (isset($build['field_tags'])) {
+      unset($build['field_tags']);
+    }
+    if (isset($build['field_folder'])) {
+      unset($build['field_folder']);
+    }
+  }
+}
