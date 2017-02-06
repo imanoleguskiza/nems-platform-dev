@@ -13,15 +13,6 @@ function nems_slider_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'i18n_node_options_nems_slide';
-  $strongarm->value = array(
-    0 => 'required',
-  );
-  $export['i18n_node_options_nems_slide'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'comment_anonymous_nems_slide';
   $strongarm->value = '0';
   $export['comment_anonymous_nems_slide'] = $strongarm;
@@ -175,6 +166,15 @@ function nems_slider_strongarm() {
     ),
   );
   $export['field_bundle_settings_node__nems_slide'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_options_nems_slide';
+  $strongarm->value = array(
+    0 => 'required',
+  );
+  $export['i18n_node_options_nems_slide'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
