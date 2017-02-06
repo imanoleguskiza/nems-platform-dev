@@ -1,5 +1,8 @@
 <?php
 
+//application/vnd.ms-excel.sheet.macroEnabled.12
+//application/octet-stream
+
 /**
  * Implements hook_user_default_permissions_alter().
  */
@@ -187,6 +190,8 @@ function nems_core_strongarm_alter(&$items) {
   if (!empty($items['metatag_enable_file__video'])) {
     $items['metatag_enable_file__video']->value = 0;
   }
+  //variable_get('file_entity_default_allowed_extensions', 'jpg jpeg gif png txt doc docx xls xlsx pdf ppt pptx pps ppsx odt ods odp mp3 mov mp4 m4a m4v mpeg avi ogg oga ogv weba webp webm')
+  //print_r($items['file_entity_default_allowed_extensions']);
 }
 
 /**

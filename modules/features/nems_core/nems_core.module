@@ -374,7 +374,7 @@ function _nems_core_menu_item_access($menu = NULL) {
 function nems_core_node_access($node, $op, $account) {
   $type = is_string($node) ? $node : $node->type;
 
-  if (in_array($type, array('page', 'article')) && in_array('webmaster', $account->roles)) {
+  if (in_array($type, array('page', 'article')) && !in_array('administrator', $account->roles)) {
     return NODE_ACCESS_DENY;
   }
 
