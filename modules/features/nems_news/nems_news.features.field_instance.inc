@@ -238,9 +238,9 @@ function nems_news_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'description_field' => 0,
-      'entity_translation_sync' => FALSE,
+      'entity_translation_sync' => 0,
       'file_directory' => 'docs/news',
-      'file_extensions' => 'jpg jpeg gif png txt doc docx xls xlsx pdf ppt pptx pps ppsx odt ods odp mp3 mov mp4 m4a m4v mpeg avi ogg oga ogv weba webp webm',
+      'file_extensions' => 'jpg jpeg gif png txt doc docx xls xlsx xlsm pdf ppt pptx pps ppsx odt ods odp mp3 mov mp4 m4a m4v mpeg avi ogg oga ogv weba webp webm',
       'max_filesize' => '',
       'user_register_form' => FALSE,
     ),
@@ -748,6 +748,7 @@ function nems_news_field_default_field_instances() {
   t('Related Document(s)');
   t('Tags');
   t('The external link can be used to refer to news located in other sites. If this field is filled, the rest of the content fields will be ignored.');
+  t('This field won\'t be displayed in the page. This content can be placed via a list block referencing "NEMS Related Content block"');
   t('Title');
 
   return $field_instances;
