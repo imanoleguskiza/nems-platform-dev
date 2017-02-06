@@ -119,9 +119,9 @@ function nems_links_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'description_field' => 0,
-      'entity_translation_sync' => FALSE,
+      'entity_translation_sync' => 0,
       'file_directory' => '',
-      'file_extensions' => 'txt pdf doc docx ppt pptx xls xlsx',
+      'file_extensions' => 'txt pdf doc docx ppt pptx xls xlsx xlsm',
       'max_filesize' => '',
       'user_register_form' => FALSE,
     ),
