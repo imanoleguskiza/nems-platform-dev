@@ -1,8 +1,5 @@
 <?php
 
-//application/vnd.ms-excel.sheet.macroEnabled.12
-//application/octet-stream
-
 /**
  * Implements hook_user_default_permissions_alter().
  */
@@ -190,8 +187,6 @@ function nems_core_strongarm_alter(&$items) {
   if (!empty($items['metatag_enable_file__video'])) {
     $items['metatag_enable_file__video']->value = 0;
   }
-  //variable_get('file_entity_default_allowed_extensions', 'jpg jpeg gif png txt doc docx xls xlsx pdf ppt pptx pps ppsx odt ods odp mp3 mov mp4 m4a m4v mpeg avi ogg oga ogv weba webp webm')
-  //print_r($items['file_entity_default_allowed_extensions']);
 }
 
 /**
@@ -208,4 +203,16 @@ function nems_core_entity_view_alter(&$build, $type) {
       unset($build['field_folder']);
     }
   }
+}
+
+/**
+ * Implements hook_entity_view_alter().
+ *
+ * Add xlsm mime types.
+ */
+function nems_core_file_default_types_alter(&$types) {
+  // What it should be application/vnd.ms-excel.sheet.macroEnabled.12.
+  $types['document']->mimetypes[] = 'application/vnd.ms-excel.sheet.macroEnabled.12';
+  // What php detected for linux created xlsm.
+  $types['document']->mimetypes[] = 'application/octet-stream';
 }
