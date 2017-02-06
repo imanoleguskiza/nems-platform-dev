@@ -168,20 +168,6 @@ function nems_core_default_roles_permissions() {
       'access site reports' => TRUE,
       'access the block administration page' => TRUE,
       'add media from remote sources' => TRUE,
-      'add terms in classification' => TRUE,
-      'add terms in media_folders' => TRUE,
-      'add terms in nems_call_for_externals_status' => TRUE,
-      'add terms in nems_call_for_proposals_status' => TRUE,
-      'add terms in nems_call_for_tenders_status' => TRUE,
-      'add terms in nems_call_vacancy_status' => TRUE,
-      'add terms in nems_events_categories' => TRUE,
-      'add terms in nems_links_categories' => TRUE,
-      'add terms in nems_news_categories' => TRUE,
-      'add terms in nems_picture_gallery_categories' => TRUE,
-      'add terms in nems_publications_categories' => TRUE,
-      'add terms in nems_video_gallery_categories' => TRUE,
-      'add terms in tags' => TRUE,
-      'add terms in media_folders' => TRUE,
       'administer beans' => TRUE,
       'administer blocks' => TRUE,
       'administer block classes' => TRUE,
@@ -374,23 +360,30 @@ function nems_core_default_roles_permissions() {
     ),
   );
 
-  $media_folders = taxonomy_vocabulary_machine_name_load('media_folders');
-  $classification = taxonomy_vocabulary_machine_name_load('classification');
-  $tags = taxonomy_vocabulary_machine_name_load('tags');
+  $taxonomy_machine_names = array(
+    'media_folders',
+    'classification',
+    'tags',
+    'nems_video_gallery_categories',
+    'nems_call_vacancy_status',
+    'nems_publications_categories',
+    'nems_news_categories',
+    'nems_links_categories',
+    'nems_picture_gallery_categories',
+    'nems_events_categories',
+    'nems_call_for_tenders_status',
+    'nems_call_for_proposals_status',
+    'nems_call_for_externals_status',
+  );
 
-  if (!empty($media_folders)) {
-    $roles['webmaster']->permissions["edit terms in {$media_folders->vid}"] = TRUE;
-    $roles['webmaster']->permissions["delete terms in {$media_folders->vid}"] = TRUE;
-  }
+  foreach ($taxonomy_machine_names as $machine_name) {
+    $vocabulary = taxonomy_vocabulary_machine_name_load($machine_name);
 
-  if (!empty($classification)) {
-    $roles['webmaster']->permissions["edit terms in {$classification->vid}"] = TRUE;
-    $roles['webmaster']->permissions["delete terms in {$classification->vid}"] = TRUE;
-  }
-
-  if (!empty($tags)) {
-    $roles['webmaster']->permissions["edit terms in {$tags->vid}"] = TRUE;
-    $roles['webmaster']->permissions["delete terms in {$tags->vid}"] = TRUE;
+    if (!empty($vocabulary)) {
+      $roles['webmaster']->permissions["add terms in {$machine_name}"] = TRUE;
+      $roles['webmaster']->permissions["edit terms in {$vocabulary->vid}"] = TRUE;
+      $roles['webmaster']->permissions["delete terms in {$vocabulary->vid}"] = TRUE;
+    }
   }
 
   return $roles;
