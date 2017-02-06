@@ -85,7 +85,6 @@ features[file_display][] = document__wysiwyg__file_field_file_table
 features[roles_permissions][] = contributor
 features[roles_permissions][] = editor
 features[roles_permissions][] = webmaster
-features[user_role][] = webmaster
 features[variable][] = date_format_just_Y
 features[variable][] = date_views_day_format_with_year
 features[variable][] = date_views_day_format_without_year

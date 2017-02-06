@@ -268,7 +268,7 @@ function nems_video_gallery_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'metatag_enable_file__video';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['metatag_enable_file__video'] = $strongarm;
 
   $strongarm = new stdClass();

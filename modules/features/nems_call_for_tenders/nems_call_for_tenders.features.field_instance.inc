@@ -139,7 +139,7 @@ function nems_call_for_tenders_field_default_field_instances() {
       'description_field' => 0,
       'entity_translation_sync' => 0,
       'file_directory' => '',
-      'file_extensions' => 'txt pdf doc docx',
+      'file_extensions' => 'txt pdf doc docx xls xlsx xlsm',
       'max_filesize' => '',
       'user_register_form' => FALSE,
     ),

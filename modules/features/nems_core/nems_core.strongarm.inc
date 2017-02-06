@@ -321,5 +321,47 @@ function nems_core_strongarm() {
   );
   $export['theme_nems_theme_settings'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'metatag_enable_file';
+  $strongarm->value = 0;
+  $export['metatag_enable_file'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'metatag_enable_file__audio';
+  $strongarm->value = 0;
+  $export['metatag_enable_file__audio'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'metatag_enable_file__document';
+  $strongarm->value = 0;
+  $export['metatag_enable_file__document'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'metatag_enable_file__image';
+  $strongarm->value = 0;
+  $export['metatag_enable_file__image'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'metatag_enable_file__video';
+  $strongarm->value = 0;
+  $export['metatag_enable_file__video'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'file_entity_default_allowed_extensions';
+  $strongarm->value = variable_get('file_entity_default_allowed_extensions', 'jpg jpeg gif png txt doc docx xls xlsx xlsm pdf ppt pptx pps ppsx odt ods odp mp3 mov mp4 m4a m4v mpeg avi ogg oga ogv weba webp webm');
+  $export['file_entity_default_allowed_extensions'] = $strongarm;
+
   return $export;
 }

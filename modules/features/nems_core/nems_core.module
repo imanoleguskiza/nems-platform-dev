@@ -374,7 +374,7 @@ function _nems_core_menu_item_access($menu = NULL) {
 function nems_core_node_access($node, $op, $account) {
   $type = is_string($node) ? $node : $node->type;
 
-  if (in_array($type, array('page', 'article')) && in_array('webmaster', $account->roles)) {
+  if (in_array($type, array('page', 'article')) && !in_array('administrator', $account->roles)) {
     return NODE_ACCESS_DENY;
   }
 
@@ -460,18 +460,6 @@ function nems_core_form_tb_megamenu_admin_settings_alter(&$form, &$form_state, $
         unset($form[$name]);
       }
     }
-  }
-}
-
-/**
- * Implements hook_form_FORM_ID_alter().
- *
- * Remove tags from dispaly mode of all file entities.
- */
-function nems_core_entity_view_alter(&$build, $type) {
-  if ($type == 'file' && isset($build['field_tags'])) {
-    unset($build['field_tags']);
-    unset($build['field_folder']);
   }
 }
 
@@ -584,58 +572,6 @@ function _nems_core_user_access($permissions, $account = NULL) {
     }
   }
   return $access;
-}
-
-/**
- * Implements hook_post_features_revert().
- */
-function nems_core_post_features_revert($component) {
-  if ($component == 'variable') {
-    // Remove the media_browser_plus taxonomy reference from file displays.
-    $bundles = array('audio', 'document', 'image', 'video');
-
-    foreach ($bundles as $bundle) {
-      $instance_info = field_info_instance('file', 'field_folder', $bundle);
-
-      if (!empty($instance_info)) {
-        $instance_info['display']['default']['type'] = 'hidden';
-        field_update_instance($instance_info);
-      }
-    }
-  }
-}
-
-/**
- * Implements hook_views_default_views_alter().
- */
-function nems_core_views_default_views_alter(&$views) {
-  if (isset($views['media_browser_plus'])) {
-    // NEMS defines the MBP tabs as default, so we set the correct titles here.
-    $views['media_browser_plus']->display['media_browser_thumbnails']->display_options['title'] = t('Library');
-    $views['media_browser_plus']->display['media_browser_my_files']->display_options['title'] = t('My files');
-  }
-}
-
-/**
- * Implements hook_strongarm_alter().
- */
-function nems_core_strongarm_alter(&$items) {
-  if (!empty($items['media_wysiwyg_wysiwyg_browser_plugins'])) {
-    // Alter Media browser settings (swap old tabs with MBP tabs).
-    // We update from here to avoid feature conflicts with ec_embedded_video.
-    $value = array(
-      0 => 'upload',
-      1 => 'media_browser_plus--media_browser_thumbnails',
-      2 => 'media_browser_plus--media_browser_my_files',
-      3 => 'media_internet',
-    );
-
-    $items['media_wysiwyg_wysiwyg_browser_plugins']->value = $value;
-  }
-  if (!empty($items['ecas_account_option'])) {
-    // In NEMS these autoregistered users are BLOCKED #NEXTEUROPA-14116.
-    $items['ecas_account_option']->value = 0;
-  }
 }
 
 /**

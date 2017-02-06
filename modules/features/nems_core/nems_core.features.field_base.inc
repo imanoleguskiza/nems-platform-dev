@@ -125,7 +125,7 @@ function nems_core_field_default_field_bases() {
         0 => 'fid',
       ),
     ),
-    'locked' => 1,
+    'locked' => 0,
     'module' => 'file',
     'settings' => array(
       'display_default' => 0,
@@ -248,7 +248,7 @@ function nems_core_field_default_field_bases() {
         0 => 'fid',
       ),
     ),
-    'locked' => 1,
+    'locked' => 0,
     'module' => 'file',
     'settings' => array(
       'display_default' => 0,
