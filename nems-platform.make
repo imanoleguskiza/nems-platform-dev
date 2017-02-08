@@ -47,6 +47,7 @@ projects[integration][version] = "1.x-dev"
 projects[media_browser_plus][subdir] = "contrib"
 projects[media_browser_plus][version] = "3.0-beta4"
 projects[media_browser_plus][patch][] = "https://www.drupal.org/files/issues/download-files-in-media-basket-does-not-work-2821063-2.patch"
+projects[media_browser_plus][patch][] = "https://www.drupal.org/files/media_browser_plus-2037173-add_views_caching.patch"
 
 projects[media_feeds][subdir] = "contrib"
 projects[media_feeds][version] = "2.x-dev"
