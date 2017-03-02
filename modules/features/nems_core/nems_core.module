@@ -228,7 +228,7 @@ function nems_core_filefield_source_reference_autocomplete($entity_type, $bundle
 /**
  * Get all the files used within a particular field (or all fields).
  *
- * @param string $file_name
+ * @param string $filename
  *   The partial name of the file to retrieve.
  * @param object $instance
  *   Optional. A CCK field array for which to filter returned files.
@@ -739,8 +739,8 @@ function nems_core_preprocess_feature_set_admin_form(&$variables) {
             'class' => 'feature-set__doc',
           ),
           '#value' => !empty($item['#featuresetinfo']['require'])
-            ? $item['#featuresetinfo']['require']
-            : '',
+          ? $item['#featuresetinfo']['require']
+          : '',
         ),
       ));
 
