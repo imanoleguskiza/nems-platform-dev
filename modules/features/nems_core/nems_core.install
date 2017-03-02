@@ -185,4 +185,8 @@ function nems_core_update_7202() {
 
   // In NEMS these autoregistered users are BLOCKED #NEXTEUROPA-14116.
   variable_set('ecas_account_option', 0);
+
+  // NEMS-19 add xlsm file extension.
+  $ext = 'jpg jpeg gif png txt doc docx xls xlsx xlsm pdf ppt pptx pps ppsx odt ods odp mp3 mov mp4 m4a m4v mpeg avi ogg oga ogv weba webp webm';
+  variable_get('file_entity_default_allowed_extensions', $ext);
 }
