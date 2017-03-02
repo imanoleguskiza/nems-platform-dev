@@ -1,8 +1,8 @@
 name = NEMS Slider
 description = Custom slider for NEMS
 core = 7.x
-package = NEMS
 php = 5.6
+package = NEMS
 dependencies[] = bean
 dependencies[] = bean_admin_ui
 dependencies[] = cce_basic_config

@@ -13,9 +13,7 @@ function nems_events_user_default_permissions() {
   // Exported permission: 'add terms in nems_events_categories'.
   $permissions['add terms in nems_events_categories'] = array(
     'name' => 'add terms in nems_events_categories',
-    'roles' => array(
-      'webmaster' => 'webmaster',
-    ),
+    'roles' => array(),
     'module' => 'taxonomy_access_fix',
   );
 
@@ -53,9 +51,7 @@ function nems_events_user_default_permissions() {
   // Exported permission: 'delete terms in nems_events_categories'.
   $permissions['delete terms in nems_events_categories'] = array(
     'name' => 'delete terms in nems_events_categories',
-    'roles' => array(
-      'webmaster' => 'webmaster',
-    ),
+    'roles' => array(),
     'module' => 'taxonomy',
   );
 
@@ -83,9 +79,7 @@ function nems_events_user_default_permissions() {
   // Exported permission: 'edit terms in nems_events_categories'.
   $permissions['edit terms in nems_events_categories'] = array(
     'name' => 'edit terms in nems_events_categories',
-    'roles' => array(
-      'webmaster' => 'webmaster',
-    ),
+    'roles' => array(),
     'module' => 'taxonomy',
   );
 

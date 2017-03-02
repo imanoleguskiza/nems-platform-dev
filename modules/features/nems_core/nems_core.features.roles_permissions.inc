@@ -10,7 +10,7 @@
 function nems_core_default_roles_permissions() {
   $roles = array();
 
-  // Exported role: contributor.
+  // Exported role: contributor
   $roles['contributor'] = (object) array(
     'name' => 'contributor',
     'weight' => 3,
@@ -18,7 +18,6 @@ function nems_core_default_roles_permissions() {
       'access media browser' => TRUE,
       'access workbench' => TRUE,
       'add media from remote sources' => TRUE,
-      'create article content' => TRUE,
       'create common_page content' => TRUE,
       'create gallery content' => TRUE,
       'create nems_call_for_externals content' => TRUE,
@@ -31,7 +30,6 @@ function nems_core_default_roles_permissions() {
       'create nems_slide content' => TRUE,
       'create nems_vacancy content' => TRUE,
       'create video_gallery content' => TRUE,
-      'delete own article content' => TRUE,
       'delete own common_page content' => TRUE,
       'delete own gallery content' => TRUE,
       'delete own nems_call_for_externals content' => TRUE,
@@ -43,7 +41,6 @@ function nems_core_default_roles_permissions() {
       'delete own nems_publication content' => TRUE,
       'delete own nems_vacancy content' => TRUE,
       'delete own video_gallery content' => TRUE,
-      'edit own article content' => TRUE,
       'edit own common_page content' => TRUE,
       'edit own gallery content' => TRUE,
       'edit own nems_call_for_externals content' => TRUE,
@@ -71,7 +68,7 @@ function nems_core_default_roles_permissions() {
     ),
   );
 
-  // Exported role: editor.
+  // Exported role: editor
   $roles['editor'] = (object) array(
     'name' => 'editor',
     'weight' => 4,
@@ -79,7 +76,6 @@ function nems_core_default_roles_permissions() {
       'access media browser' => TRUE,
       'add media from remote sources' => TRUE,
       'create any slider bean' => TRUE,
-      'create article content' => TRUE,
       'create common_page content' => TRUE,
       'create gallery content' => TRUE,
       'create nems_call_for_externals content' => TRUE,
@@ -92,8 +88,6 @@ function nems_core_default_roles_permissions() {
       'create nems_slide content' => TRUE,
       'create nems_vacancy content' => TRUE,
       'create video_gallery content' => TRUE,
-      'delete any article content' => TRUE,
-      'delete own article content' => TRUE,
       'delete own common_page content' => TRUE,
       'delete own gallery content' => TRUE,
       'delete own nems_call_for_externals content' => TRUE,
@@ -107,7 +101,6 @@ function nems_core_default_roles_permissions() {
       'delete own nems_vacancy content' => TRUE,
       'delete own video_gallery content' => TRUE,
       'delete revisions' => TRUE,
-      'edit any article content' => TRUE,
       'edit any common_page content' => TRUE,
       'edit any gallery content' => TRUE,
       'edit any nems_call_for_externals content' => TRUE,
@@ -119,7 +112,6 @@ function nems_core_default_roles_permissions() {
       'edit any nems_publication content' => TRUE,
       'edit any nems_vacancy content' => TRUE,
       'edit any video_gallery content' => TRUE,
-      'edit own article content' => TRUE,
       'edit own common_page content' => TRUE,
       'edit own gallery content' => TRUE,
       'edit own nems_call_for_externals content' => TRUE,
@@ -149,7 +141,7 @@ function nems_core_default_roles_permissions() {
     ),
   );
 
-  // Exported role: webmaster.
+  // Exported role: webmaster
   $roles['webmaster'] = (object) array(
     'name' => 'webmaster',
     'weight' => 5,
@@ -163,14 +155,12 @@ function nems_core_default_roles_permissions() {
       'access ecas import users function' => TRUE,
       'access europa search' => TRUE,
       'access media browser' => TRUE,
-      'access own webform results' => TRUE,
-      'access own webform submissions' => TRUE,
       'access site reports' => TRUE,
       'access the block administration page' => TRUE,
       'add media from remote sources' => TRUE,
       'administer beans' => TRUE,
-      'administer blocks' => TRUE,
       'administer block classes' => TRUE,
+      'administer blocks' => TRUE,
       'administer content translations' => TRUE,
       'administer files' => TRUE,
       'administer group' => TRUE,
@@ -219,8 +209,6 @@ function nems_core_default_roles_permissions() {
       'create translation jobs' => TRUE,
       'create url aliases' => TRUE,
       'create video_gallery content' => TRUE,
-      'create webform content' => TRUE,
-      'delete all webform submissions' => TRUE,
       'delete any audio files' => TRUE,
       'delete any block bean' => TRUE,
       'delete any common_page content' => TRUE,
@@ -241,7 +229,6 @@ function nems_core_default_roles_permissions() {
       'delete any slider bean' => TRUE,
       'delete any video files' => TRUE,
       'delete any video_gallery content' => TRUE,
-      'delete any webform content' => TRUE,
       'delete any webtools bean' => TRUE,
       'delete own audio files' => TRUE,
       'delete own common_page content' => TRUE,
@@ -260,8 +247,6 @@ function nems_core_default_roles_permissions() {
       'delete own nems_vacancy content' => TRUE,
       'delete own video files' => TRUE,
       'delete own video_gallery content' => TRUE,
-      'delete own webform content' => TRUE,
-      'delete own webform submissions' => TRUE,
       'delete revisions' => TRUE,
       'download any audio files' => TRUE,
       'download any document files' => TRUE,
@@ -271,7 +256,6 @@ function nems_core_default_roles_permissions() {
       'download own document files' => TRUE,
       'download own image files' => TRUE,
       'download own video files' => TRUE,
-      'edit all webform submissions' => TRUE,
       'edit any audio files' => TRUE,
       'edit any block bean' => TRUE,
       'edit any common_page content' => TRUE,
@@ -292,7 +276,6 @@ function nems_core_default_roles_permissions() {
       'edit any slider bean' => TRUE,
       'edit any video files' => TRUE,
       'edit any video_gallery content' => TRUE,
-      'edit any webform content' => TRUE,
       'edit any webtools bean' => TRUE,
       'edit meta tags' => TRUE,
       'edit own audio files' => TRUE,
@@ -312,9 +295,6 @@ function nems_core_default_roles_permissions() {
       'edit own nems_vacancy content' => TRUE,
       'edit own video files' => TRUE,
       'edit own video_gallery content' => TRUE,
-      'edit own webform content' => TRUE,
-      'edit own webform submissions' => TRUE,
-      'edit webform components' => TRUE,
       'moderate content from draft to needs_review' => TRUE,
       'moderate content from needs_review to draft' => TRUE,
       'moderate content from needs_review to published' => TRUE,
@@ -375,10 +355,8 @@ function nems_core_default_roles_permissions() {
     'nems_call_for_proposals_status',
     'nems_call_for_externals_status',
   );
-
   foreach ($taxonomy_machine_names as $machine_name) {
     $vocabulary = taxonomy_vocabulary_machine_name_load($machine_name);
-
     if (!empty($vocabulary)) {
       $roles['webmaster']->permissions["add terms in {$machine_name}"] = TRUE;
       $roles['webmaster']->permissions["edit terms in {$vocabulary->vid}"] = TRUE;

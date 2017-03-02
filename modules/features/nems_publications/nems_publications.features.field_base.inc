@@ -22,7 +22,7 @@ function nems_publications_field_default_field_bases() {
         0 => 'fid',
       ),
     ),
-    'locked' => 0,
+    'locked' => 1,
     'module' => 'file',
     'settings' => array(
       'display_default' => 0,
