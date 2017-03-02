@@ -1,6 +1,7 @@
 name = NEMS Video Gallery
 description = Video gallery feature for NEMS website
 core = 7.x
+php = 5.6
 package = NEMS
 dependencies[] = ctools
 dependencies[] = eva

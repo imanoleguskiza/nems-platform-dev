@@ -1,6 +1,7 @@
 name = NEMS core settings
 description = NEMS core feature with settings for NEMS website
 core = 7.x
+php = 5.6
 package = NEMS
 dependencies[] = admin_language
 dependencies[] = bean_admin_ui

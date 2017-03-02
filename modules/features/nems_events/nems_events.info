@@ -1,6 +1,7 @@
 name = NEMS Events
 description = The events feature for the NEMS websites
 core = 7.x
+php = 5.6
 package = NEMS
 dependencies[] = colorbox
 dependencies[] = ctools

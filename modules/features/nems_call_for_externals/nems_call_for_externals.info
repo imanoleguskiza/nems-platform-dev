@@ -1,6 +1,7 @@
 name = NEMS Call For External Experts
 description = The Call For External Experts Feature of the NEMS Website
 core = 7.x
+php = 5.6
 package = NEMS
 dependencies[] = cce_basic_config
 dependencies[] = ctools

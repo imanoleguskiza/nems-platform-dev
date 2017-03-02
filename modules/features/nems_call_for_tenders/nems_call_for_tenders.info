@@ -1,6 +1,7 @@
 name = NEMS call for tenders
 description = The call for tenders Feature of the NEMS Website
 core = 7.x
+php = 5.6
 package = NEMS
 dependencies[] = ctools
 dependencies[] = date

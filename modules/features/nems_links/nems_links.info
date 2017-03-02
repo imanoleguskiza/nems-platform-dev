@@ -1,6 +1,7 @@
 name = NEMS links
 description = The links feature fo the NEMS websites
 core = 7.x
+php = 5.6
 package = NEMS
 dependencies[] = ctools
 dependencies[] = features
