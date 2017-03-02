@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * Platform overwrites.
+ */
 
 /**
  * Implements hook_user_default_permissions_alter().
@@ -171,7 +175,7 @@ function nems_core_strongarm_alter(&$items) {
     // In NEMS these autoregistered users are BLOCKED #NEXTEUROPA-14116.
     $items['ecas_account_option']->value = 0;
   }
-  // #NEXTEUROPA-14200
+  // #NEXTEUROPA-14200.
   if (!empty($items['metatag_enable_file'])) {
     $items['metatag_enable_file']->value = 0;
   }

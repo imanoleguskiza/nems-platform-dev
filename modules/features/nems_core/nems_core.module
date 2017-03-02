@@ -77,7 +77,7 @@ function nems_core_theme($existing, $type, $theme, $path) {
 }
 
 /**
- * theme_simple_link().
+ * Implements theme_simple_link().
  */
 function theme_simple_link($variables) {
   $file = $variables['file'];
@@ -202,7 +202,7 @@ function nems_core_menu_alter(&$items) {
   $items['user/%user/edit']['access callback'] = '_nems_core_user_edit_access';
   $items['user/%user/cancel']['access callback'] = '_nems_core_user_edit_access';
 
-  // Try to fix fielfield_sources autocomplete
+  // Try to fix fielfield_sources autocomplete.
   if (isset($items['file/reference/%/%/%'])) {
     $items['file/reference/%/%/%']['page callback'] = 'nems_core_filefield_source_reference_autocomplete';
   }
@@ -218,7 +218,7 @@ function nems_core_filefield_source_reference_autocomplete($entity_type, $bundle
   if (!empty($field)) {
     $files = _nems_core_filefield_source_reference_get_files($filename, $field);
     foreach ($files as $fid => $file) {
-      $items[$file->filename ." [fid:$fid]"] = theme('filefield_source_reference_autocomplete_item', array('file' => $file));
+      $items[$file->filename . " [fid:$fid]"] = theme('filefield_source_reference_autocomplete_item', array('file' => $file));
     }
   }
 
@@ -228,14 +228,15 @@ function nems_core_filefield_source_reference_autocomplete($entity_type, $bundle
 /**
  * Get all the files used within a particular field (or all fields).
  *
- * @param $file_name
+ * @param string $file_name
  *   The partial name of the file to retrieve.
- * @param $instance
+ * @param object $instance
  *   Optional. A CCK field array for which to filter returned files.
  */
 function _nems_core_filefield_source_reference_get_files($filename, $instance = NULL) {
   if (isset($instance)) {
-    // If we are looking at a single field, cache its settings, in case we want to search all fields.
+    // If we are looking at a single field, cache its settings,
+    // in case we want to search all fields.
     $setting_autocomplete = empty($instance['widget']['settings']['filefield_sources']['source_reference']['autocomplete']) ? 0 : 1;
     $setting_search_all_fields = empty($instance['widget']['settings']['filefield_sources']['source_reference']['search_all_fields']) ? 0 : 1;
   }
@@ -262,7 +263,8 @@ function _nems_core_filefield_source_reference_get_files($filename, $instance = 
       continue;
     }
 
-    // If we are searching all fields, use the autocomplete settings from the source field.
+    // If we are searching all fields,
+    // use the autocomplete settings from the source field.
     if (!empty($setting_search_all_fields)) {
       $instance['widget']['settings']['filefield_sources']['source_reference']['autocomplete'] = empty($setting_autocomplete) ? 0 : 1;
     }
@@ -355,6 +357,7 @@ function _nems_core_menu_block_access($account = NULL) {
  *
  * @param array $menu
  *   The menu item viwed.
+ *
  * @return bool
  *   The result.
  */
@@ -627,7 +630,7 @@ function nems_core_preprocess_feature_set_admin_form(&$variables) {
 
   foreach ($variables['feature_set_category']['category'] as $category => $features) {
     // Create category id.
-    $category_id = preg_replace("/[^a-z0-9_\s-]/", "", strtolower($category));
+    $category_id = preg_replace("/[^a-z0-9_\s-]/", "", drupal_strtolower($category));
     $category_id = preg_replace("/[\s-]+/", " ", $category_id);
     $category_id = preg_replace("/[\s_]/", "-", $category_id);
 
@@ -676,7 +679,7 @@ function nems_core_preprocess_feature_set_admin_form(&$variables) {
             'class' => 'feature-set__icon',
           ),
         );
-        $feature_icon = theme_image($image);
+        $feature_icon = theme('image', $image);
       }
       else {
         $feature_icon = '';
