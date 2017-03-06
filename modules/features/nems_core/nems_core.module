@@ -589,33 +589,35 @@ function nems_core_preprocess_feature_set_admin_form(&$variables) {
 
   $categories_list = '';
   $features_list = '';
-  // Define prefered feature sets.
-  $keepers = array(
-    'featureset-multi_user_blog',
-    'featureset-multisite_registration_standard',
-    'featureset-text_collapse',
-    'featureset-ec_world_countries',
-    'featureset-f_a_q',
-    'featureset-multisite_maxlength',
-    'featureset-multisite_activity_standard',
-    'featureset-nexteuropa_notices',
-    'featureset-e_library_standard',
-    'featureset-ec_embedded_image',
-    'featureset-ec_embedded_video',
-    'featureset-multisite_crop_and_resize',
-    'featureset-node_pager',
-    'featureset-sitemap',
-    'featureset-multisite_business_indicators_standard',
-    'featureset-contact_form',
-    'featureset-idea_standard',
-    'featureset-survey_standard',
-    'featureset-multisite_notifications_core',
+  // Define removable feature sets.
+  $remove = array(
+    'featureset-ec_content_slider',
+    'featureset-events_standard',
+    'featureset-links_standard',
+    'featureset-multisite_metatags',
+    'featureset-nexteuropa_webtools',
+    'featureset-wiki_standard',
+    'featureset-feed_rss_core',
+    'featureset-news_standard',
+    'featureset-newsletters',
+    'featureset-nexteuropa_geofield',
+    'featureset-nexteuropa_geojson_feeds',
+    'featureset-nexteuropa_integration',
+    'featureset-multisite_audio',
+    'featureset-multisite_mediagallery_standard',
+    'featureset-multilingual_tools',
+    'featureset-multisite_multilingual_references',
+    'featureset-multisite_translations',
+    'featureset-splash_screen',
+    'featureset-fat_footer',
+    'featureset-multisite_megamenu',
+    'featureset-ec_profiles',
   );
 
   // Filter out the unwanted feature sets.
   foreach ($variables['feature_set_category']['category'] as $category => $features) {
     foreach ($features as $key => $value) {
-      if (!in_array($key, $keepers)) {
+      if (in_array($key, $remove)) {
         unset($features[$key]);
       }
     }
