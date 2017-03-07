@@ -312,7 +312,35 @@ function nems_core_menu() {
     );
   }
 
+  $items['node/%node/%'] = array(
+    'page callback' => 'nems_core_wysiwyg_view_file',
+    'page arguments' => array(2),
+    'access arguments' => array('use media wysiwyg'),
+    'type' => MENU_CALLBACK,
+  );
+
   return $items;
+}
+
+/**
+ * Callback: serves images requested by the new file token.
+ */
+function nems_core_wysiwyg_view_file($filetoken) {
+  $fid = str_replace(array('[file:', ':url]'), '', $filetoken);
+  $fid = intval($fid);
+  $path = FALSE;
+
+  if (!empty($fid)) {
+    $file = file_load($fid);
+    $path = file_create_url($file->uri);
+  }
+
+  if (!empty($path)) {
+    drupal_goto($path);
+  }
+  else {
+    drupal_not_found();
+  }
 }
 
 /**
