@@ -13,7 +13,9 @@ function nems_news_user_default_permissions() {
   // Exported permission: 'add terms in nems_news_categories'.
   $permissions['add terms in nems_news_categories'] = array(
     'name' => 'add terms in nems_news_categories',
-    'roles' => array(),
+    'roles' => array(
+      'webmaster' => 'webmaster',
+    ),
     'module' => 'taxonomy_access_fix',
   );
 
@@ -51,7 +53,9 @@ function nems_news_user_default_permissions() {
   // Exported permission: 'delete terms in nems_news_categories'.
   $permissions['delete terms in nems_news_categories'] = array(
     'name' => 'delete terms in nems_news_categories',
-    'roles' => array(),
+    'roles' => array(
+      'webmaster' => 'webmaster',
+    ),
     'module' => 'taxonomy',
   );
 
@@ -79,7 +83,9 @@ function nems_news_user_default_permissions() {
   // Exported permission: 'edit terms in nems_news_categories'.
   $permissions['edit terms in nems_news_categories'] = array(
     'name' => 'edit terms in nems_news_categories',
-    'roles' => array(),
+    'roles' => array(
+      'webmaster' => 'webmaster',
+    ),
     'module' => 'taxonomy',
   );
 
