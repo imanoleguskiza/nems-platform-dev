@@ -56,8 +56,16 @@ To
 
 ### 4. Run composer install  
 
-Install all the necessary dependencies for your project.  
+Install all the necessary dependencies for your project. 
 
+**Attention! in case you encounter this error:**
+ ```
+ sh: 1: vendor/ec-europa/nems-platform/post-install.sh: not found
+ Script vendor/ec-europa/nems-platform/post-install.sh handling the post-install-cmd event returned with error code 127
+ ```
+this is due to the composer.lock file in the starter kit, you can manually require the package like so:
+
+`composer require "ec-europa/nems-platform:1.*"`
 ### 5. Run post install shell scripts  
 
 Run this command in your terminal:   
