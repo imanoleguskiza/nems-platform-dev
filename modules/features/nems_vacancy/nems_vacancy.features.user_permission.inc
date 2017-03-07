@@ -13,7 +13,9 @@ function nems_vacancy_user_default_permissions() {
   // Exported permission: 'add terms in nems_call_vacancy_status'.
   $permissions['add terms in nems_call_vacancy_status'] = array(
     'name' => 'add terms in nems_call_vacancy_status',
-    'roles' => array(),
+    'roles' => array(
+      'webmaster' => 'webmaster',
+    ),
     'module' => 'taxonomy_access_fix',
   );
 
@@ -51,7 +53,9 @@ function nems_vacancy_user_default_permissions() {
   // Exported permission: 'delete terms in nems_call_vacancy_status'.
   $permissions['delete terms in nems_call_vacancy_status'] = array(
     'name' => 'delete terms in nems_call_vacancy_status',
-    'roles' => array(),
+    'roles' => array(
+      'webmaster' => 'webmaster',
+    ),
     'module' => 'taxonomy',
   );
 
@@ -79,7 +83,9 @@ function nems_vacancy_user_default_permissions() {
   // Exported permission: 'edit terms in nems_call_vacancy_status'.
   $permissions['edit terms in nems_call_vacancy_status'] = array(
     'name' => 'edit terms in nems_call_vacancy_status',
-    'roles' => array(),
+    'roles' => array(
+      'webmaster' => 'webmaster',
+    ),
     'module' => 'taxonomy',
   );
 
