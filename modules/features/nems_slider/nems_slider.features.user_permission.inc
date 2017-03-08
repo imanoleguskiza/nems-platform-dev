@@ -16,6 +16,7 @@ function nems_slider_user_default_permissions() {
     'roles' => array(
       'editor' => 'editor',
       'webmaster' => 'webmaster',
+      'manage blocks' => 'manage blocks',
     ),
     'module' => 'bean',
   );
@@ -27,6 +28,7 @@ function nems_slider_user_default_permissions() {
       'contributor' => 'contributor',
       'editor' => 'editor',
       'webmaster' => 'webmaster',
+      'publish content' => 'publish content',
     ),
     'module' => 'node',
   );
@@ -36,6 +38,7 @@ function nems_slider_user_default_permissions() {
     'name' => 'delete any nems_slide content',
     'roles' => array(
       'webmaster' => 'webmaster',
+      'publish content' => 'publish content',
     ),
     'module' => 'node',
   );
@@ -45,6 +48,7 @@ function nems_slider_user_default_permissions() {
     'name' => 'delete any slider bean',
     'roles' => array(
       'webmaster' => 'webmaster',
+      'manage blocks' => 'manage blocks',
     ),
     'module' => 'bean',
   );
@@ -55,6 +59,7 @@ function nems_slider_user_default_permissions() {
     'roles' => array(
       'editor' => 'editor',
       'webmaster' => 'webmaster',
+      'publish content' => 'publish content',
     ),
     'module' => 'node',
   );
@@ -64,6 +69,7 @@ function nems_slider_user_default_permissions() {
     'name' => 'edit any nems_slide content',
     'roles' => array(
       'webmaster' => 'webmaster',
+      'publish content' => 'publish content',
     ),
     'module' => 'node',
   );
@@ -73,6 +79,7 @@ function nems_slider_user_default_permissions() {
     'name' => 'edit any slider bean',
     'roles' => array(
       'webmaster' => 'webmaster',
+      'manage blocks' => 'manage blocks',
     ),
     'module' => 'bean',
   );
@@ -84,6 +91,7 @@ function nems_slider_user_default_permissions() {
       'contributor' => 'contributor',
       'editor' => 'editor',
       'webmaster' => 'webmaster',
+      'publish content' => 'publish content',
     ),
     'module' => 'node',
   );
@@ -95,6 +103,7 @@ function nems_slider_user_default_permissions() {
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
       'webmaster' => 'webmaster',
+      'manage blocks' => 'manage blocks',
     ),
     'module' => 'bean',
   );
