@@ -10,7 +10,7 @@
 function nems_core_default_roles_permissions() {
   $roles = array();
 
-  // Exported role: contributor.
+  // Exported role: contributor
   $roles['contributor'] = (object) array(
     'name' => 'contributor',
     'weight' => 3,
@@ -68,7 +68,7 @@ function nems_core_default_roles_permissions() {
     ),
   );
 
-  // Exported role: editor.
+  // Exported role: editor
   $roles['editor'] = (object) array(
     'name' => 'editor',
     'weight' => 4,
@@ -141,7 +141,219 @@ function nems_core_default_roles_permissions() {
     ),
   );
 
-  // Exported role: webmaster.
+  // Exported role: manage blocks
+  $roles['manage blocks'] = (object) array(
+    'name' => 'manage blocks',
+    'weight' => 9,
+    'permissions' => array(
+      'access administration menu' => TRUE,
+      'access administration pages' => TRUE,
+      'access bean overview' => TRUE,
+      'access media browser' => TRUE,
+      'access the block administration page' => TRUE,
+      'administer beans' => TRUE,
+      'administer block classes' => TRUE,
+      'administer blocks' => TRUE,
+      'administer quicktabs' => TRUE,
+      'configure all block body fields' => TRUE,
+      'configure all block descriptions' => TRUE,
+      'configure all block titles' => TRUE,
+      'configure all blocks' => TRUE,
+      'configure all language settings' => TRUE,
+      'create any block bean' => TRUE,
+      'create any list_block bean' => TRUE,
+      'create any slider bean' => TRUE,
+      'create any webtools bean' => TRUE,
+      'create blocks' => TRUE,
+      'delete any block bean' => TRUE,
+      'delete any list_block bean' => TRUE,
+      'delete any slider bean' => TRUE,
+      'delete any webtools bean' => TRUE,
+      'disable all blocks' => TRUE,
+      'edit any block bean' => TRUE,
+      'edit any list_block bean' => TRUE,
+      'edit any slider bean' => TRUE,
+      'edit any webtools bean' => TRUE,
+      'enable all blocks' => TRUE,
+      'move all blocks' => TRUE,
+      'show format selection for bean' => TRUE,
+      'translate bean entities' => TRUE,
+      'use media wysiwyg' => TRUE,
+      'view all blocks' => TRUE,
+      'view bean page' => TRUE,
+      'view bean revisions' => TRUE,
+    ),
+  );
+
+  // Exported role: manage files
+  $roles['manage files'] = (object) array(
+    'name' => 'manage files',
+    'weight' => 8,
+    'permissions' => array(
+      'access administration menu' => TRUE,
+      'access administration pages' => TRUE,
+      'add media from remote sources' => TRUE,
+      'add terms in media_folders' => TRUE,
+      'administer files' => TRUE,
+      'create files' => TRUE,
+      'delete any audio files' => TRUE,
+      'delete any document files' => TRUE,
+      'delete any image files' => TRUE,
+      'delete any video files' => TRUE,
+      'delete own audio files' => TRUE,
+      'delete own document files' => TRUE,
+      'delete own image files' => TRUE,
+      'delete own video files' => TRUE,
+      'download any audio files' => TRUE,
+      'download any document files' => TRUE,
+      'download any image files' => TRUE,
+      'download any video files' => TRUE,
+      'download own audio files' => TRUE,
+      'download own document files' => TRUE,
+      'download own image files' => TRUE,
+      'download own video files' => TRUE,
+      'edit any audio files' => TRUE,
+      'edit any document files' => TRUE,
+      'edit any image files' => TRUE,
+      'edit any video files' => TRUE,
+      'edit own audio files' => TRUE,
+      'edit own document files' => TRUE,
+      'edit own image files' => TRUE,
+      'edit own video files' => TRUE,
+      'use media wysiwyg' => TRUE,
+      'view own files' => TRUE,
+      'view own private files' => TRUE,
+      'view private files' => TRUE,
+    ),
+  );
+
+  // Exported role: manage main menu
+  $roles['manage main menu'] = (object) array(
+    'name' => 'manage main menu',
+    'weight' => 10,
+    'permissions' => array(
+      'access administration menu' => TRUE,
+      'access administration pages' => TRUE,
+      'administer main-menu menu items' => TRUE,
+      'administer menu attributes' => TRUE,
+      'administer menu_token' => TRUE,
+    ),
+  );
+
+  // Exported role: manage users
+  $roles['manage users'] = (object) array(
+    'name' => 'manage users',
+    'weight' => 6,
+    'permissions' => array(
+      'access administration menu' => TRUE,
+      'access administration pages' => TRUE,
+      'access ecas import users function' => TRUE,
+      'administer users' => TRUE,
+      'change own username' => TRUE,
+    ),
+  );
+
+  // Exported role: publish content
+  $roles['publish content'] = (object) array(
+    'name' => 'publish content',
+    'weight' => 7,
+    'permissions' => array(
+      'access administration menu' => TRUE,
+      'access administration pages' => TRUE,
+      'access content overview' => TRUE,
+      'access media browser' => TRUE,
+      'administer content translations' => TRUE,
+      'bypass workbench moderation' => TRUE,
+      'create common_page content' => TRUE,
+      'create files' => TRUE,
+      'create gallery content' => TRUE,
+      'create nems_call_for_externals content' => TRUE,
+      'create nems_call_for_proposals content' => TRUE,
+      'create nems_call_for_tenders content' => TRUE,
+      'create nems_event content' => TRUE,
+      'create nems_link content' => TRUE,
+      'create nems_news content' => TRUE,
+      'create nems_publication content' => TRUE,
+      'create nems_slide content' => TRUE,
+      'create nems_vacancy content' => TRUE,
+      'create url aliases' => TRUE,
+      'create video_gallery content' => TRUE,
+      'delete any common_page content' => TRUE,
+      'delete any gallery content' => TRUE,
+      'delete any nems_call_for_externals content' => TRUE,
+      'delete any nems_call_for_proposals content' => TRUE,
+      'delete any nems_call_for_tenders content' => TRUE,
+      'delete any nems_event content' => TRUE,
+      'delete any nems_link content' => TRUE,
+      'delete any nems_news content' => TRUE,
+      'delete any nems_publication content' => TRUE,
+      'delete any nems_slide content' => TRUE,
+      'delete any nems_vacancy content' => TRUE,
+      'delete any video_gallery content' => TRUE,
+      'delete own common_page content' => TRUE,
+      'delete own gallery content' => TRUE,
+      'delete own nems_call_for_externals content' => TRUE,
+      'delete own nems_call_for_proposals content' => TRUE,
+      'delete own nems_call_for_tenders content' => TRUE,
+      'delete own nems_event content' => TRUE,
+      'delete own nems_link content' => TRUE,
+      'delete own nems_news content' => TRUE,
+      'delete own nems_publication content' => TRUE,
+      'delete own nems_slide content' => TRUE,
+      'delete own nems_vacancy content' => TRUE,
+      'delete own video_gallery content' => TRUE,
+      'delete revisions' => TRUE,
+      'edit any common_page content' => TRUE,
+      'edit any gallery content' => TRUE,
+      'edit any nems_call_for_externals content' => TRUE,
+      'edit any nems_call_for_proposals content' => TRUE,
+      'edit any nems_call_for_tenders content' => TRUE,
+      'edit any nems_event content' => TRUE,
+      'edit any nems_link content' => TRUE,
+      'edit any nems_news content' => TRUE,
+      'edit any nems_publication content' => TRUE,
+      'edit any nems_slide content' => TRUE,
+      'edit any nems_vacancy content' => TRUE,
+      'edit any video_gallery content' => TRUE,
+      'edit meta tags' => TRUE,
+      'edit own common_page content' => TRUE,
+      'edit own gallery content' => TRUE,
+      'edit own nems_call_for_externals content' => TRUE,
+      'edit own nems_call_for_proposals content' => TRUE,
+      'edit own nems_call_for_tenders content' => TRUE,
+      'edit own nems_event content' => TRUE,
+      'edit own nems_link content' => TRUE,
+      'edit own nems_news content' => TRUE,
+      'edit own nems_publication content' => TRUE,
+      'edit own nems_slide content' => TRUE,
+      'edit own nems_vacancy content' => TRUE,
+      'edit own video_gallery content' => TRUE,
+      'export nodes' => TRUE,
+      'moderate content from draft to needs_review' => TRUE,
+      'moderate content from needs_review to draft' => TRUE,
+      'moderate content from needs_review to published' => TRUE,
+      'moderate content from needs_review to validated' => TRUE,
+      'moderate content from published to archived' => TRUE,
+      'moderate content from published to draft' => TRUE,
+      'moderate content from published to expired' => TRUE,
+      'moderate content from published to needs_review' => TRUE,
+      'moderate content from validated to published' => TRUE,
+      'multisite_workbench_moderation_view_bulk_update' => TRUE,
+      'override default scheduler time' => TRUE,
+      'revert revisions' => TRUE,
+      'schedule (un)publishing of nodes' => TRUE,
+      'translate content' => TRUE,
+      'translate node entities' => TRUE,
+      'translate user-defined strings' => TRUE,
+      'use media wysiwyg' => TRUE,
+      'view all unpublished content' => TRUE,
+      'view own files' => TRUE,
+      'view own private files' => TRUE,
+      'view scheduled content' => TRUE,
+    ),
+  );
+
+  // Exported role: webmaster
   $roles['webmaster'] = (object) array(
     'name' => 'webmaster',
     'weight' => 5,
@@ -158,6 +370,19 @@ function nems_core_default_roles_permissions() {
       'access site reports' => TRUE,
       'access the block administration page' => TRUE,
       'add media from remote sources' => TRUE,
+      'add terms in classification' => TRUE,
+      'add terms in media_folders' => TRUE,
+      'add terms in nems_call_for_externals_status' => TRUE,
+      'add terms in nems_call_for_proposals_status' => TRUE,
+      'add terms in nems_call_for_tenders_status' => TRUE,
+      'add terms in nems_call_vacancy_status' => TRUE,
+      'add terms in nems_events_categories' => TRUE,
+      'add terms in nems_links_categories' => TRUE,
+      'add terms in nems_news_categories' => TRUE,
+      'add terms in nems_picture_gallery_categories' => TRUE,
+      'add terms in nems_publications_categories' => TRUE,
+      'add terms in nems_video_gallery_categories' => TRUE,
+      'add terms in tags' => TRUE,
       'administer beans' => TRUE,
       'administer block classes' => TRUE,
       'administer blocks' => TRUE,
@@ -358,11 +583,14 @@ function nems_core_default_roles_permissions() {
   foreach ($taxonomy_machine_names as $machine_name) {
     $vocabulary = taxonomy_vocabulary_machine_name_load($machine_name);
     if (!empty($vocabulary)) {
-      $roles['webmaster']->permissions["add terms in {$machine_name}"] = TRUE;
       $roles['webmaster']->permissions["edit terms in {$vocabulary->vid}"] = TRUE;
       $roles['webmaster']->permissions["delete terms in {$vocabulary->vid}"] = TRUE;
     }
   }
+
+  $vocabulary = taxonomy_vocabulary_machine_name_load('media_folders');
+  $roles['manage files']->permissions["edit terms in {$vocabulary->vid}"] = TRUE;
+  $roles['manage files']->permissions["delete terms in {$vocabulary->vid}"] = TRUE;
 
   return $roles;
 }
