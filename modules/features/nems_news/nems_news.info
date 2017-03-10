@@ -83,6 +83,7 @@ features[variable][] = scheduler_unpublish_enable_nems_news
 features[variable][] = scheduler_unpublish_moderation_state_nems_news
 features[variable][] = scheduler_unpublish_revision_nems_news
 features[views_view][] = nems_categories
+features[views_view][] = nems_frontpage_news
 features[views_view][] = nems_news
 features[views_view][] = nems_news_full_list
 features_exclude[dependencies][cce_basic_config] = cce_basic_config
