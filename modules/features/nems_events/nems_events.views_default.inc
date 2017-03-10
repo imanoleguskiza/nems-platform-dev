@@ -1775,7 +1775,7 @@ function nems_events_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'NEMS frontpage event';
+  $handler->display->display_options['title'] = FALSE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -1904,7 +1904,7 @@ function nems_events_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Upcoming Events';
+  $handler->display->display_options['title'] = FALSE;
   $handler->display->display_options['css_class'] = 'block-events';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'More events';
@@ -2030,7 +2030,7 @@ function nems_events_views_default_views() {
   /* Display: Past Event Simple List */
   $handler = $view->new_display('block', 'Past Event Simple List', 'block_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Past Events';
+  $handler->display->display_options['title'] = FALSE;
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['css_class'] = 'page-events';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
