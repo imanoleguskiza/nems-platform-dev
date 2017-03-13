@@ -99,4 +99,4 @@ features_exclude[field_base][body] = body
 features_exclude[field_base][title_field] = title_field
 features_exclude[field_base][field_nems_dynamic_submenu] = field_nems_dynamic_submenu
 features_exclude[field_base][og_group_ref] = og_group_ref
-multisite_version = 2.1
+multisite_version = 2.2

@@ -36,4 +36,4 @@ features[language][] = sl
 features[language][] = sv
 features[variable][] = language_suffix_delimiter
 features[variable][] = language_types
-multisite_version = 2.1
+multisite_version = 2.2

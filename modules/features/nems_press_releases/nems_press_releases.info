@@ -56,4 +56,4 @@ features[variable][] = node_options_press_releases
 features[variable][] = node_preview_press_releases
 features[variable][] = node_submitted_press_releases
 features[views_view][] = press_releases_
-multisite_version = 2.1
+multisite_version = 2.2
