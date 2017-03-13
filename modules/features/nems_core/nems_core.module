@@ -324,6 +324,8 @@ function nems_core_menu() {
 
 /**
  * Callback: serves images requested by the new file token.
+ *
+ * @param string $filetoken
  */
 function nems_core_wysiwyg_view_file($filetoken) {
   $fid = str_replace(array('[file:', ':url]'), '', $filetoken);
@@ -332,7 +334,10 @@ function nems_core_wysiwyg_view_file($filetoken) {
 
   if (!empty($fid)) {
     $file = file_load($fid);
-    $path = file_create_url($file->uri);
+
+    if (!empty($file)) {
+      $path = file_create_url($file->uri);
+    }
   }
 
   if (!empty($path)) {
@@ -355,15 +360,13 @@ function nems_core_module_implements_alter(&$implementations, $hook) {
 }
 
 /**
- * Implements hook_form_alter().
+ * Implements hook_form_BASE_FORM_ID_alter().
  */
-function nems_core_form_alter(&$form, &$form_state, $form_id) {
-  if (isset($form['type']) && isset($form['type']['#value']) && $form_id == $form['type']['#value'] . '_node_form') {
-    if (isset($form['language'])) {
-      // Ensure correct language list (no disabled languages should be present).
-      $languages = i18n_node_language_list($form['#node']);
-      $form['language']['#options'] = $languages;
-    }
+function nems_core_form_node_form_alter(&$form, &$form_state, $form_id) {
+  if (isset($form['language'])) {
+    // Ensure correct language list (no disabled languages should be present).
+    $languages = i18n_node_language_list($form['#node']);
+    $form['language']['#options'] = $languages;
   }
 }
 
@@ -685,7 +688,7 @@ function nems_core_preprocess_feature_set_admin_form(&$variables) {
 
     // Format features.
     $feature_full = '';
-    foreach ($features as $key => $item) {
+    foreach ($features as $item) {
       // Get the icon if available.
       if (!empty($item['#featuresetinfo']['font'])) {
         $feature_icon = theme('html_tag', array(

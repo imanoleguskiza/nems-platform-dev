@@ -5,10 +5,6 @@
  */
 
 include_once 'nems_multilingual_setup.features.inc';
-/**
- * @file
- * Code for the nems_multilingual_setup feature.
- */
 
 /**
  * Function to import the .po translation files.

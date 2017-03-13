@@ -18,4 +18,4 @@ features[features_api][] = api:2
 features[field_base][] = field_nems_dynamic_submenu
 features[variable][] = tocify_context
 features[variable][] = tocify_selectors
-multisite_version = 2.1
+multisite_version = 2.2

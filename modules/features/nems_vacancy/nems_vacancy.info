@@ -66,4 +66,4 @@ features[variable][] = scheduler_unpublish_revision_nems_vacancy
 features[views_view][] = nems_vacancy
 features_exclude[dependencies][i18n_taxonomy] = i18n_taxonomy
 features_exclude[dependencies][nexteuropa_multilingual] = nexteuropa_multilingual
-multisite_version = 2.1
+multisite_version = 2.2

@@ -122,4 +122,4 @@ features[views_view][] = nems_gallery
 features_exclude[dependencies][cce_basic_config] = cce_basic_config
 features_exclude[dependencies][nexteuropa_multilingual] = nexteuropa_multilingual
 features_exclude[field_base][og_group_ref] = og_group_ref
-multisite_version = 2.1
+multisite_version = 2.2
