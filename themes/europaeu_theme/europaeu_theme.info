@@ -2,7 +2,7 @@ name = Europa.eu theme
 description = This is a sub-theme of theme ec_resp
 core = 7.x
 base theme = ec_resp
-multisite_version = 2.1
+multisite_version = 2.2
 package = europa_eu
 php = 5.6
 
