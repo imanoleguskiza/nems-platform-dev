@@ -1801,7 +1801,6 @@ function nems_events_views_default_views() {
   $handler->display->display_options['fields']['field_nems_core_image']['element_type'] = 'div';
   $handler->display->display_options['fields']['field_nems_core_image']['element_class'] = 'field-name-field-nems-image';
   $handler->display->display_options['fields']['field_nems_core_image']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_nems_core_image']['empty'] = '<img src="https://ec.europa.eu/isa2/sites/isa/files/bhd-2473-isa-brochures.jpg">';
   $handler->display->display_options['fields']['field_nems_core_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_nems_core_image']['settings'] = array(
     'image_style' => '',

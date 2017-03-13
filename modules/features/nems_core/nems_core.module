@@ -326,7 +326,7 @@ function nems_core_menu() {
  * Callback: serves images requested by the new file token.
  *
  * @param string $filetoken
- *  File token passed through url.
+ *   File token passed through url.
  */
 function nems_core_wysiwyg_view_file($filetoken) {
   $fid = str_replace(array('[file:', ':url]'), '', $filetoken);

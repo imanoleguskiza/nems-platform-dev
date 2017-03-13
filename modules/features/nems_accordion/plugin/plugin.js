@@ -48,7 +48,6 @@
         }
       });
 
-
       var allowedContent = 'div h3 p(!accordion)';
 
       editor.addCommand('nemsAddAccordion', {

@@ -10,7 +10,7 @@
 function nems_core_default_roles_permissions() {
   $roles = array();
 
-  // Exported role: contributor
+  // Exported role: contributor.
   $roles['contributor'] = (object) array(
     'name' => 'contributor',
     'weight' => 3,
@@ -68,7 +68,7 @@ function nems_core_default_roles_permissions() {
     ),
   );
 
-  // Exported role: editor
+  // Exported role: editor.
   $roles['editor'] = (object) array(
     'name' => 'editor',
     'weight' => 4,
@@ -141,7 +141,7 @@ function nems_core_default_roles_permissions() {
     ),
   );
 
-  // Exported role: manage blocks
+  // Exported role: manage blocks.
   $roles['manage blocks'] = (object) array(
     'name' => 'manage blocks',
     'weight' => 9,
@@ -185,7 +185,7 @@ function nems_core_default_roles_permissions() {
     ),
   );
 
-  // Exported role: manage files
+  // Exported role: manage files.
   $roles['manage files'] = (object) array(
     'name' => 'manage files',
     'weight' => 8,
@@ -227,7 +227,7 @@ function nems_core_default_roles_permissions() {
     ),
   );
 
-  // Exported role: manage main menu
+  // Exported role: manage main menu.
   $roles['manage main menu'] = (object) array(
     'name' => 'manage main menu',
     'weight' => 10,
@@ -240,7 +240,7 @@ function nems_core_default_roles_permissions() {
     ),
   );
 
-  // Exported role: manage users
+  // Exported role: manage users.
   $roles['manage users'] = (object) array(
     'name' => 'manage users',
     'weight' => 6,
@@ -253,7 +253,7 @@ function nems_core_default_roles_permissions() {
     ),
   );
 
-  // Exported role: publish content
+  // Exported role: publish content.
   $roles['publish content'] = (object) array(
     'name' => 'publish content',
     'weight' => 7,
@@ -353,7 +353,7 @@ function nems_core_default_roles_permissions() {
     ),
   );
 
-  // Exported role: webmaster
+  // Exported role: webmaster.
   $roles['webmaster'] = (object) array(
     'name' => 'webmaster',
     'weight' => 5,
