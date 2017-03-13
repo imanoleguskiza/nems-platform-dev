@@ -56,12 +56,7 @@
 
         exec : function (editor) {
           // Create the wrapper div.
-          var wrapper = new CKEDITOR.dom.element.createFromHtml(
-            '<div class="accordion">' +
-            '<h3>Accordion title</h3>' +
-            '<div class="accordion-content"><p>New accordion content</p></div>' +
-            '</div>'
-          );
+          var wrapper = new CKEDITOR.dom.element.createFromHtml('<div class="accordion"><h3>Accordion title</h3><div class="accordion-content"><p>New accordion content</p></div></div>');
 
           editor.insertElement(wrapper);
         }
